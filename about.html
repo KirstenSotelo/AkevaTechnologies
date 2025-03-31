@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Akeva Technologies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <h1>AKEVA</h1>
+                    <p>TECHNOLOGIES</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="page-header">
+            <div class="container">
+                <h1>About Akeva Technologies</h1>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2>Our Story</h2>
+                    <p>Akeva Technologies was founded by a team of cybersecurity and AI governance experts who recognized the growing need for integrated solutions that address both security and compliance challenges in the digital age.</p>
+                    <p>With years of combined experience in information security, risk management, and artificial intelligence, our team has developed a comprehensive approach to helping organizations navigate the increasingly complex landscape of digital security and AI governance.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Akeva Technologies team">
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-section">
+            <div class="container">
+                <div class="mission-image">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Mission visualization">
+                </div>
+                <div class="mission-content">
+                    <h2>Our Mission</h2>
+                    <p>Our mission is to help organizations navigate the complexities of digital security and artificial intelligence management, enabling them to operate confidently while adhering to the highest standards of governance and risk management.</p>
+                    <p>We believe that effective security and governance practices should be integrated into the organizational culture, not treated as separate functions. By taking this approach, we help our clients stay ahead of regulatory changes, mitigate risks, and enhance their resilience against cyber threats.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="container">
+                <h2>Our Core Values</h2>
+                <div class="values-grid">
+                    <div class="value-box">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Integrity</h3>
+                        <p>We maintain the highest ethical standards in all our interactions and recommendations.</p>
+                    </div>
+                    <div class="value-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Innovation</h3>
+                        <p>We continuously seek new and better ways to address security and governance challenges.</p>
+                    </div>
+                    <div class="value-box">
+                        <i class="fas fa-users"></i>
+                        <h3>Collaboration</h3>
+                        <p>We work closely with our clients to develop solutions that meet their specific needs.</p>
+                    </div>
+                    <div class="value-box">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Excellence</h3>
+                        <p>We strive for excellence in everything we do, from technical implementations to client service.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <h2>Our Leadership Team</h2>
+                <div class="team-grid">
+                    <div class="team-member" v-for="member in teamMembers" :key="member.name">
+                        <img :src="member.image" :alt="member.name + ' portrait'">
+                        <h3>{{ member.name }}</h3>
+                        <p>{{ member.position }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Enhance Your Security and Governance?</h2>
+                <p>Contact us today to learn how we can help your organization.</p>
+                <a href="contact.html" class="btn">Get in Touch</a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Akeva Technologies</h3>
+                        <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact</h3>
+                        <p><i class="fas fa-envelope"></i> info@akevatech.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Tech Plaza, Suite 500<br>San Francisco, CA 94105</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {{ currentYear }} Akeva Technologies. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+        
+        createApp({
+            setup() {
+                const currentYear = ref(new Date().getFullYear());
+                const teamMembers = ref([
+                    {
+                        name: 'John Doe',
+                        position: 'Chief Executive Officer',
+                        image: 'Placeholder'
+                    },
+                ]);
+                
+                return {
+                    currentYear,
+                    teamMembers
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
+

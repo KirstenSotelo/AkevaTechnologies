@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akeva Technologies | Cybersecurity & AI Governance</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <h1>AKEVA</h1>
+                    <p>TECHNOLOGIES</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="container">
+                <h1>Comprehensive Cybersecurity & AI Governance</h1>
+                <p>Ensuring compliance with industry frameworks and regulations</p>
+                <a href="contact.html" class="btn">Get Started</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2 class="section-title">What We Ensure</h2>
+            <div class="container">
+                <div class="feature-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>ISO 27001 Cybersecurity</h3>
+                    <p>Implement and maintain robust information security management systems that protect your critical assets.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-robot"></i>
+                    <h3>ISO 42001 AI Governance</h3>
+                    <p>Navigate the complexities of artificial intelligence with governance frameworks that ensure ethical and compliant AI operations.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Management Systems</h3>
+                    <p>Build integrated management systems that streamline security and governance practices into your organizational culture.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-preview">
+            <div class="container">
+                <div class="about-content">
+                    <h2>Our Mission</h2>
+                    <p>At Akeva Technologies, we help organizations navigate the complexities of digital security and artificial intelligence management, enabling them to operate confidently while adhering to the highest standards of governance and risk management.</p>
+                    <a href="about.html" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Cybersecurity professionals at work">
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Stay Ahead of Regulatory Changes</h2>
+                <p>Our services are designed to help you mitigate risks and enhance resilience against cyber threats.</p>
+                <a href="contact.html" class="btn">Contact Us Today</a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Akeva Technologies</h3>
+                        <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact</h3>
+                        <p><i class="fas fa-envelope"></i> info@akevatech.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Tech Plaza, Suite 500<br>San Francisco, CA 94105</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {{ currentYear }} Akeva Technologies. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+        
+        createApp({
+            setup() {
+                const currentYear = ref(new Date().getFullYear());
+                
+                return {
+                    currentYear
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
+
