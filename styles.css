@@ -1179,3 +1179,234 @@ footer::before {
     padding: 25px;
   }
 }
+
+/* Customer Section Styles */
+.customers {
+  padding: 80px 0;
+  background-color: var(--light-color);
+  position: relative;
+}
+
+.customers::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="1" fill="%23007bff" fill-opacity="0.05"/></svg>');
+  background-size: 20px 20px;
+  opacity: 0.5;
+}
+
+.customers-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  color: var(--gray-color);
+  font-size: 1.1rem;
+}
+
+.logo-slideshow {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px 0;
+}
+
+.logo-container {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  min-height: 240px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 119, 182, 0.15);
+  background-color: white;
+}
+
+.logo-slide {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease;
+  gap: 40px;
+}
+
+.logo-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.logo-image {
+  flex: 0 0 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-right: 1px solid rgba(0, 119, 182, 0.1);
+}
+
+.logo-info {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.customer-logo {
+  max-width: 220px;
+  max-height: 100px;
+}
+
+.customer-name {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.customer-description {
+  color: var(--gray-color);
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.slideshow-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.slideshow-dots {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  margin: 0 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  transform: scale(1.2);
+}
+
+.slideshow-arrows {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgba(0, 119, 182, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.arrow:hover {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-color: transparent;
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments for customer section */
+@media (max-width: 992px) {
+  .logo-container {
+    min-height: 260px;
+  }
+
+  .logo-image {
+    flex: 0 0 220px;
+  }
+
+  .customer-logo {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-slide {
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+    gap: 20px;
+  }
+
+  .logo-image {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 119, 182, 0.1);
+    padding-bottom: 20px;
+    width: 100%;
+  }
+
+  .logo-info {
+    padding-left: 0;
+    padding-top: 15px;
+  }
+
+  .customer-logo {
+    max-width: 180px;
+    max-height: 80px;
+  }
+
+  .logo-container {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-container {
+    min-height: 380px;
+  }
+
+  .logo-slide {
+    padding: 20px;
+  }
+
+  .customer-logo {
+    max-width: 160px;
+    max-height: 70px;
+  }
+
+  .slideshow-arrows {
+    gap: 15px;
+  }
+
+  .arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .customer-name {
+    font-size: 1.3rem;
+  }
+
+  .customer-description {
+    font-size: 1rem;
+  }
+}
