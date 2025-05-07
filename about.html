@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Akeva Technologies</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
@@ -13,8 +14,7 @@
         <header>
             <div class="container">
                 <div class="logo">
-                    <h1>AKEVA</h1>
-                    <p>TECHNOLOGIES</p>
+                    <img src="img/LogoShield.png" alt="Akeva Technologies Logo">
                 </div>
                 <nav>
                     <ul>
@@ -91,11 +91,16 @@
             <div class="container">
                 <h2>Our Leadership Team</h2>
                 <div class="team-grid">
-                    <div class="team-member" v-for="member in teamMembers" :key="member.name">
-                        <img :src="member.image" :alt="member.name + ' portrait'">
-                        <h3>{{ member.name }}</h3>
-                        <p>{{ member.position }}</p>
-                    </div>
+                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer" class="team-member" v-for="member in teamMembers" :key="member.name">
+                        <div class="member-image">
+                            <img :src="member.image" :alt="member.name + ' portrait'">
+                        </div>
+                        <div class="member-info">
+                            <h3>{{ member.name }}</h3>
+                            <p class="member-position">{{ member.position }}</p>
+                            <p class="member-bio">{{ member.bio }}</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -148,8 +153,45 @@
                     {
                         name: 'John Doe',
                         position: 'Chief Executive Officer',
-                        image: 'Placeholder'
+                        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
+                        bio: 'With over 20 years of experience in cybersecurity, John leads our strategic vision and operations.',
+                        linkedin: 'https://www.linkedin.com/in/johndoe/'
                     },
+                    {
+                        name: 'Sarah Johnson',
+                        position: 'Chief Technology Officer',
+                        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
+                        bio: 'Sarah oversees our technical strategy and innovation, specializing in AI systems and security architecture.',
+                        linkedin: 'https://www.linkedin.com/in/sarahjohnson/'
+                    },
+                    {
+                        name: 'Michael Chen',
+                        position: 'Chief Information Security Officer',
+                        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
+                        bio: 'Michael brings extensive experience in threat intelligence and security operations to protect our clients.',
+                        linkedin: 'https://www.linkedin.com/in/michaelchen/'
+                    },
+                    {
+                        name: 'Amara Patel',
+                        position: 'VP of AI Governance',
+                        image: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
+                        bio: 'Amara leads our AI governance practice, helping clients implement ethical and compliant AI systems.',
+                        linkedin: 'https://www.linkedin.com/in/amarapatel/'
+                    },
+                    {
+                        name: 'David Rodriguez',
+                        position: 'Director of Compliance',
+                        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
+                        bio: 'David ensures our solutions meet regulatory requirements across multiple frameworks and jurisdictions.',
+                        linkedin: 'https://www.linkedin.com/in/davidrodriguez/'
+                    },
+                    {
+                        name: 'Emily Wilson',
+                        position: 'Head of Client Services',
+                        image: 'https://images.unsplash.com/photo-1598550874175-4d0ef436c909?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
+                        bio: 'Emily focuses on delivering exceptional client experiences and building long-term partnerships.',
+                        linkedin: 'https://www.linkedin.com/in/emilywilson/'
+                    }
                 ]);
                 
                 return {
@@ -159,6 +201,8 @@
             }
         }).mount('#app');
     </script>
+
+    <style>
+    </style>
 </body>
 </html>
-
