@@ -2,25 +2,26 @@
 
 /* Page Header Styling */
 .page-header {
-    background: var(--gradient);
-    padding: 60px 0;
-    text-align: center;
-    color: var(--white);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .page-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="1" fill="%23ffffff" fill-opacity="0.1"/></svg>');
-    background-size: 20px 20px;
-    opacity: 0.5;
-  }
+  background: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop")
+    no-repeat center center;
+  background-size: cover;
+  color: var(--white);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 102, 178, 0.65); /* Semi-transparent overlay using primary blue */
+  z-index: 0;
+}
   
   .page-header h1 {
     font-size: 3rem;
@@ -28,6 +29,7 @@
     color: var(--white);
     position: relative;
     z-index: 1;
+    animation: fadeInUp 1s ease;
   }
   
   .page-header p {
@@ -36,6 +38,7 @@
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    animation: fadeInUp 1s ease;
   }
   
   /* Contact Section Styling */

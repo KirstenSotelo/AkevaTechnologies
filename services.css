@@ -15,9 +15,11 @@
   --card-border-radius: 12px;
 }
 
-/* Page Header Section */
+/* Page Header Section - Updated with real office image background */
 .page-header {
-  background: var(--gradient);
+  background: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop")
+    no-repeat center center;
+  background-size: cover;
   color: var(--white);
   padding: 80px 0;
   text-align: center;
@@ -32,9 +34,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="1" fill="%23ffffff" fill-opacity="0.1"/></svg>');
-  background-size: 20px 20px;
-  opacity: 0.5;
+  background-color: rgba(0, 102, 178, 0.65); /* Semi-transparent overlay using primary blue */
+  z-index: 0;
 }
 
 .page-header h1 {
@@ -43,7 +44,8 @@
   color: var(--white);
   position: relative;
   z-index: 1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 1s ease;
 }
 
 /* Services Introduction Section */
@@ -223,11 +225,11 @@
   .services-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
-  
+
   .page-header h1 {
     font-size: 3rem;
   }
-  
+
   .service-header h2 {
     font-size: 2.2rem;
   }
@@ -237,25 +239,25 @@
   .services-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .page-header {
     padding: 60px 0;
   }
-  
+
   .page-header h1 {
     font-size: 2.5rem;
   }
-  
+
   .service-header i {
     width: 80px;
     height: 80px;
     font-size: 2.5rem;
   }
-  
+
   .service-header h2 {
     font-size: 2rem;
   }
-  
+
   .services-intro p {
     font-size: 1.1rem;
   }
@@ -265,23 +267,23 @@
   .page-header h1 {
     font-size: 2rem;
   }
-  
+
   .service-header h2 {
     font-size: 1.8rem;
   }
-  
+
   .service-box {
     padding: 20px;
   }
-  
+
   .service-box h3 {
     font-size: 1.2rem;
   }
-  
+
   .cta h2 {
     font-size: 2rem;
   }
-  
+
   .cta p {
     font-size: 1.1rem;
   }

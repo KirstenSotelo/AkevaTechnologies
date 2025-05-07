@@ -1046,6 +1046,7 @@ nav ul li a.active {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: auto;
   padding: 20px;
   border-right: 1px solid rgba(0, 119, 182, 0.1);
 }
@@ -1058,6 +1059,7 @@ nav ul li a.active {
 .customer-logo {
   max-width: 220px;
   max-height: 100px;
+  width: auto;
 }
 
 .customer-name {
@@ -1187,11 +1189,37 @@ footer::before {
 .footer-section p {
   margin-bottom: 15px;
   color: #aaa;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.footer-section:hover p {
-  color: #ccc;
+.footer-section a {
+  margin-bottom: 15px;
+  color: #aaa;
+  transition: all 0.3s ease;
+}
+
+.footer-section a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gradient);
+  transition: width 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--primary-teal);
+  transform: translateX(5px);
+}
+
+.footer-section a:hover::after {
+  width: 100%;
+}
+
+.footer-section p:hover {
+  transform: translateX(5px);
 }
 
 .footer-section ul li {

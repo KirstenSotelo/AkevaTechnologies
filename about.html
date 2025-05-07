@@ -14,7 +14,7 @@
         <header>
             <div class="container">
                 <div class="logo">
-                    <img src="img/LogoShield2.png" alt="Akeva Technologies Logo">
+                    <img src="img/LogoShield1.png" alt="Akeva Technologies Logo">
                 </div>
                 <nav>
                     <ul>
@@ -36,7 +36,7 @@
         <section class="about-section">
             <div class="container">
                 <div class="about-content">
-                    <h2>Our Story</h2>
+                    <h2 class="section-title">Our <span class="highlight">Story</span></h2>
                     <p>Akeva Technologies was founded by a team of cybersecurity and AI governance experts who recognized the growing need for integrated solutions that address both security and compliance challenges in the digital age.</p>
                     <p>With years of combined experience in information security, risk management, and artificial intelligence, our team has developed a comprehensive approach to helping organizations navigate the increasingly complex landscape of digital security and AI governance.</p>
                 </div>
@@ -52,7 +52,7 @@
                     <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Mission visualization">
                 </div>
                 <div class="mission-content">
-                    <h2>Our Mission</h2>
+                    <h2 class="section-title">Our <span class="highlight">Mission</span></h2>
                     <p>Our mission is to help organizations navigate the complexities of digital security and artificial intelligence management, enabling them to operate confidently while adhering to the highest standards of governance and risk management.</p>
                     <p>We believe that effective security and governance practices should be integrated into the organizational culture, not treated as separate functions. By taking this approach, we help our clients stay ahead of regulatory changes, mitigate risks, and enhance their resilience against cyber threats.</p>
                 </div>
@@ -61,7 +61,7 @@
 
         <section class="values-section">
             <div class="container">
-                <h2>Our Core Values</h2>
+                <h2 class="section-title">Our <span class="highlight">Core Values</span></h2>
                 <div class="values-grid">
                     <div class="value-box">
                         <i class="fas fa-shield-alt"></i>
@@ -87,24 +87,6 @@
             </div>
         </section>
 
-        <section class="team-section">
-            <div class="container">
-                <h2>Our Leadership Team</h2>
-                <div class="team-grid">
-                    <a :href="member.linkedin" target="_blank" rel="noopener noreferrer" class="team-member" v-for="member in teamMembers" :key="member.name">
-                        <div class="member-image">
-                            <img :src="member.image" :alt="member.name + ' portrait'">
-                        </div>
-                        <div class="member-info">
-                            <h3>{{ member.name }}</h3>
-                            <p class="member-position">{{ member.position }}</p>
-                            <p class="member-bio">{{ member.bio }}</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <section class="cta">
             <div class="container">
                 <h2>Ready to Enhance Your Security and Governance?</h2>
@@ -113,12 +95,41 @@
             </div>
         </section>
 
+        <section class="team-section">
+            <div class="container">
+                <h2 class="section-title">Meet <span class="highlight">Our Founder</span></h2>
+                <div class="team-member" id="founder-card">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Shawn Sales">
+                    <h3>Shawn Sales</h3>
+                    <p>Founder & Energy Advisor</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="founderModal" class="modal">
+            <div class="modal-content">
+              <span class="close-btn">&times;</span>
+              <h2>Shawn Sales</h2>
+              <p><strong>Founder & Energy Advisor</strong></p>
+              <p>Shawn Sales has over 15 years of experience in sales management and a strong commitment to sustainability. After transitioning to the sustainable energy sector in 2022, he earned a diploma in Sustainable Energy Technology and became a Registered Energy Advisor.</p>
+            <p>Shawn specializes in solar PV, geo-exchange, wind energy, and HVAC systems, and is skilled in energy evaluations, Net Zero solutions, heat load calculations, and duct design.</p>
+            <p>As a Quality Assurance Specialist and Service Organization Manager, Shawn trains and supports energy advisors, ensuring compliance with energy performance standards. His diverse background in retail and construction, combined with his technical expertise, allows him to provide effective, innovative energy solutions.</p>
+            <p>Shawn is passionate about reducing environmental impact through sustainable energy and continues to expand his knowledge through various certifications in energy efficiency and sustainable technology. At Consider It Energy, his goal is to help homeowners and builders achieve their sustainability goals.</p>
+            </div>
+          </div>
+          
+
         <footer>
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
                         <h3>Akeva Technologies</h3>
                         <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
                     <div class="footer-section">
                         <h3>Quick Links</h3>
@@ -131,78 +142,110 @@
                     </div>
                     <div class="footer-section">
                         <h3>Contact</h3>
-                        <p><i class="fas fa-envelope"></i> info@akevatech.com</p>
-                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Tech Plaza, Suite 500<br>San Francisco, CA 94105</p>
+                        <p><a href="mailto:contact@akeva-technologies.com"><i class="fas fa-envelope"></i> contact@akeva-technologies.com</a></p>
+                        <p><a href="tel:+14164195683"><i class="fas fa-phone"></i> +1 (416) 419-5683</a></p>
+                        <p><a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank"><i class="fas fa-map-marker-alt"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8</a></p>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; {{ currentYear }} Akeva Technologies. All rights reserved.</p>
+                    <p>&copy; <span id="currentYear"></span> Akeva Technologies. All rights reserved.</p>
                 </div>
             </div>
         </footer>
     </div>
 
     <script>
-        const { createApp, ref } = Vue;
-        
-        createApp({
-            setup() {
-                const currentYear = ref(new Date().getFullYear());
-                const teamMembers = ref([
-                    {
-                        name: 'John Doe',
-                        position: 'Chief Executive Officer',
-                        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
-                        bio: 'With over 20 years of experience in cybersecurity, John leads our strategic vision and operations.',
-                        linkedin: 'https://www.linkedin.com/in/johndoe/'
-                    },
-                    {
-                        name: 'Sarah Johnson',
-                        position: 'Chief Technology Officer',
-                        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
-                        bio: 'Sarah oversees our technical strategy and innovation, specializing in AI systems and security architecture.',
-                        linkedin: 'https://www.linkedin.com/in/sarahjohnson/'
-                    },
-                    {
-                        name: 'Michael Chen',
-                        position: 'Chief Information Security Officer',
-                        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
-                        bio: 'Michael brings extensive experience in threat intelligence and security operations to protect our clients.',
-                        linkedin: 'https://www.linkedin.com/in/michaelchen/'
-                    },
-                    {
-                        name: 'Amara Patel',
-                        position: 'VP of AI Governance',
-                        image: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
-                        bio: 'Amara leads our AI governance practice, helping clients implement ethical and compliant AI systems.',
-                        linkedin: 'https://www.linkedin.com/in/amarapatel/'
-                    },
-                    {
-                        name: 'David Rodriguez',
-                        position: 'Director of Compliance',
-                        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
-                        bio: 'David ensures our solutions meet regulatory requirements across multiple frameworks and jurisdictions.',
-                        linkedin: 'https://www.linkedin.com/in/davidrodriguez/'
-                    },
-                    {
-                        name: 'Emily Wilson',
-                        position: 'Head of Client Services',
-                        image: 'https://images.unsplash.com/photo-1598550874175-4d0ef436c909?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80',
-                        bio: 'Emily focuses on delivering exceptional client experiences and building long-term partnerships.',
-                        linkedin: 'https://www.linkedin.com/in/emilywilson/'
-                    }
-                ]);
+        document.addEventListener("DOMContentLoaded", function() {
+          console.log("DOM fully loaded");
+          
+          // Get the modal element
+          const modal = document.getElementById("founderModal");
+          console.log("Modal element:", modal);
+          
+          // Get the founder card and close button
+          const founderCard = document.getElementById("founder-card");
+          console.log("Founder card element:", founderCard);
+          
+          const closeBtn = modal.querySelector(".close-btn");
+          console.log("Close button:", closeBtn);
+          
+          // Make sure the modal has the correct initial styles
+          if (modal) {
+            modal.style.display = "none";
+            
+            // Open modal when founder card is clicked
+            if (founderCard) {
+              founderCard.style.cursor = "pointer"; // Make it clear it's clickable
+              
+              founderCard.addEventListener("click", function() {
+                console.log("Founder card clicked");
+                // First set display to block
+                modal.style.display = "block";
                 
-                return {
-                    currentYear,
-                    teamMembers
-                };
+                // Force a reflow before changing opacity for transition
+                void modal.offsetWidth;
+                
+                // Then set opacity in the next animation frame
+                requestAnimationFrame(function() {
+                  modal.style.opacity = "1";
+                });
+                
+                document.body.style.overflow = "hidden"; // Prevent scrolling
+              });
+            } else {
+              console.error("Founder card element not found!");
             }
-        }).mount('#app');
-    </script>
+            
+            // Close modal when close button is clicked
+            if (closeBtn) {
+              closeBtn.addEventListener("click", function() {
+                console.log("Close button clicked");
+                modal.style.opacity = "0";
+                
+                // Wait for transition to complete before hiding
+                setTimeout(function() {
+                  modal.style.display = "none";
+                  document.body.style.overflow = ""; // Restore scrolling
+                }, 300); // Match this to your CSS transition time
+              });
+            } else {
+              console.error("Close button not found!");
+            }
+            
+            // Close modal when clicking outside the modal content
+            modal.addEventListener("click", function(e) {
+              if (e.target === modal) {
+                console.log("Clicked outside modal content");
+                modal.style.opacity = "0";
+                
+                // Wait for transition to complete before hiding
+                setTimeout(function() {
+                  modal.style.display = "none";
+                  document.body.style.overflow = ""; // Restore scrolling
+                }, 300); // Match this to your CSS transition time
+              }
+            });
+            
+            // Close modal when ESC key is pressed
+            document.addEventListener("keydown", function(e) {
+              if (e.key === "Escape" && modal.style.display === "block") {
+                console.log("ESC key pressed");
+                modal.style.opacity = "0";
+                
+                // Wait for transition to complete before hiding
+                setTimeout(function() {
+                  modal.style.display = "none";
+                  document.body.style.overflow = ""; // Restore scrolling
+                }, 300); // Match this to your CSS transition time
+              }
+            });
+          } else {
+            console.error("Modal element not found!");
+          }
+        });
+      </script>
 
-    <style>
-    </style>
+<script src="script" defer></script>
+
 </body>
 </html>
