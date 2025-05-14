@@ -6,6 +6,10 @@
     <title>AKEVA TECHNOLOGIES | Cybersecurity & AI Governance</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Preload critical assets -->
+    <link rel="preload" href="img/LogoShield1.png" as="image" fetchpriority="high">
+    <link rel="preload" href="img/HeroShield.png" as="image" fetchpriority="high">
+    <link rel="preload" href="img/HomepageHeroOffice.jpg" as="image" fetchpriority="high" type="image/jpeg">
 </head>
 <body>
     <div id="app">
@@ -62,7 +66,7 @@
             </div>
         </section>
 
-        <section class="features">
+        <section class="features" id="features">
             <h2 class="section-title">What We <span class="highlight">Ensure</span></h2>
             <div class="container">
                 <div class="feature-card">
@@ -97,7 +101,7 @@
             </div>
         </section>
 
-        <section class="about-preview">
+        <section class="about-preview" id="about">
             <div class="container">
                 <div class="about-content">
                     <h2>Our <span class="highlight">Mission</span></h2>
@@ -111,7 +115,7 @@
             </div>
         </section>
 
-        <section class="cta">
+        <section class="cta" id="cta">
             <div class="container">
                 <div class="tech-pattern"></div>
                 <h2>Stay Ahead of <span class="highlight-alt">Regulatory Changes</span></h2>
@@ -120,7 +124,7 @@
             </div>
         </section>
 
-        <section class="customers">
+        <section class="customers" id="customers">
             <div class="container">
                 <h2 class="section-title">Our <span class="highlight">Customers</span></h2>
                 <p class="customers-intro">Trusted by leading organizations across industries to ensure AI compliance and cybersecurity excellence.</p>

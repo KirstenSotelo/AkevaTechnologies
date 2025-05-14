@@ -22,9 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Always initialize header scroll effect
   initHeaderScroll()
-
-  // Log that script has loaded
-  console.log("Script initialized successfully")
 })
 
 // Logo Slideshow Functionality - Optimized
@@ -35,9 +32,13 @@ function initLogoSlideshow() {
   const nextBtn = document.querySelector(".next")
   let currentSlide = 0
   let slideInterval
+  let isTransitioning = false
 
-  // Function to show a specific slide
+  // Function to show a specific slide with debounce
   function showSlide(index) {
+    if (isTransitioning) return
+    isTransitioning = true
+
     // Hide all slides
     slides.forEach((slide) => {
       slide.classList.remove("active")
@@ -54,36 +55,48 @@ function initLogoSlideshow() {
 
     // Update current slide index
     currentSlide = index
+
+    // Reset transition lock after animation completes
+    setTimeout(() => {
+      isTransitioning = false
+    }, 600)
   }
 
   // Event listeners for dots - using event delegation
-  document.querySelector(".slideshow-dots").addEventListener("click", (e) => {
-    if (e.target.classList.contains("dot")) {
-      const slideIndex = Number.parseInt(e.target.getAttribute("data-index"))
-      showSlide(slideIndex)
-      resetInterval()
-    }
-  })
+  const dotsContainer = document.querySelector(".slideshow-dots")
+  if (dotsContainer) {
+    dotsContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("dot")) {
+        const slideIndex = Number.parseInt(e.target.getAttribute("data-index"), 10)
+        showSlide(slideIndex)
+        resetInterval()
+      }
+    })
+  }
 
   // Event listener for previous button
-  prevBtn.addEventListener("click", () => {
-    let newIndex = currentSlide - 1
-    if (newIndex < 0) {
-      newIndex = slides.length - 1
-    }
-    showSlide(newIndex)
-    resetInterval()
-  })
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      let newIndex = currentSlide - 1
+      if (newIndex < 0) {
+        newIndex = slides.length - 1
+      }
+      showSlide(newIndex)
+      resetInterval()
+    })
+  }
 
   // Event listener for next button
-  nextBtn.addEventListener("click", () => {
-    let newIndex = currentSlide + 1
-    if (newIndex >= slides.length) {
-      newIndex = 0
-    }
-    showSlide(newIndex)
-    resetInterval()
-  })
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      let newIndex = currentSlide + 1
+      if (newIndex >= slides.length) {
+        newIndex = 0
+      }
+      showSlide(newIndex)
+      resetInterval()
+    })
+  }
 
   // Start auto-advance interval
   function startInterval() {
@@ -106,18 +119,18 @@ function initLogoSlideshow() {
   startInterval()
 }
 
-// Smooth scrolling for anchor links - Optimized
+// Smooth scrolling for anchor links - Optimized with passive event listener
 function initSmoothScrolling() {
   document.addEventListener("click", (e) => {
     const anchor = e.target.closest('a[href^="#"]')
     if (!anchor) return
 
-    e.preventDefault()
     const targetId = anchor.getAttribute("href")
     if (targetId === "#") return
 
     const targetElement = document.querySelector(targetId)
     if (targetElement) {
+      e.preventDefault()
       window.scrollTo({
         top: targetElement.offsetTop - 100,
         behavior: "smooth",
@@ -126,9 +139,11 @@ function initSmoothScrolling() {
   })
 }
 
-// Nav links active state - Optimized with throttling
+// Nav links active state - Optimized with requestAnimationFrame
 function initNavLinks() {
   const navLinks = document.querySelectorAll("nav ul li a")
+  if (!navLinks.length) return
+
   const currentPath = window.location.pathname
 
   // First, handle active state based on current page
@@ -151,39 +166,59 @@ function initNavLinks() {
 
   // Then, handle scroll-based active states only if we're on the homepage
   if (currentPath === "/" || currentPath === "/index.html" || currentPath.endsWith("index.html")) {
-    // Throttle scroll event
-    let lastScrollTime = 0
-    window.addEventListener("scroll", () => {
-      const now = Date.now()
-      if (now - lastScrollTime < 100) return // Only process every 100ms
-      lastScrollTime = now
+    // Cache section elements
+    const sections = Array.from(document.querySelectorAll("section")).filter((section) => section.id)
+    if (!sections.length) return
 
-      const sections = document.querySelectorAll("section")
-      let currentSection = ""
+    // Use requestAnimationFrame for better performance
+    let ticking = false
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop
-        if (pageYOffset >= sectionTop - 200) {
-          currentSection = section.getAttribute("id")
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            let currentSection = ""
+            const scrollPosition = window.pageYOffset
+
+            // Find current section
+            for (let i = 0; i < sections.length; i++) {
+              const section = sections[i]
+              const sectionTop = section.offsetTop
+
+              if (scrollPosition >= sectionTop - 200) {
+                currentSection = section.id
+              }
+            }
+
+            // Update active links
+            if (currentSection) {
+              navLinks.forEach((link) => {
+                const linkHref = link.getAttribute("href")
+                // Only modify hash links, preserve the active state for page links
+                if (linkHref && linkHref.startsWith("#")) {
+                  if (linkHref === "#" + currentSection) {
+                    if (!link.classList.contains("active")) {
+                      link.classList.add("active")
+                    }
+                  } else {
+                    link.classList.remove("active")
+                  }
+                }
+              })
+            }
+
+            ticking = false
+          })
+          ticking = true
         }
-      })
-
-      // Only update active state for hash links on the homepage
-      navLinks.forEach((link) => {
-        const linkHref = link.getAttribute("href")
-        // Only modify hash links, preserve the active state for page links
-        if (linkHref.startsWith("#")) {
-          link.classList.remove("active")
-          if (linkHref === "#" + currentSection) {
-            link.classList.add("active")
-          }
-        }
-      })
-    })
+      },
+      { passive: true },
+    )
   }
 }
 
-// Scroll to top button - Optimized with throttling
+// Scroll to top button - Optimized with requestAnimationFrame
 function initScrollToTop() {
   // Create scroll to top button
   const scrollBtn = document.createElement("div")
@@ -191,19 +226,26 @@ function initScrollToTop() {
   scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>'
   document.body.appendChild(scrollBtn)
 
-  // Show/hide scroll button based on scroll position - throttled
-  let lastScrollTopTime = 0
-  window.addEventListener("scroll", () => {
-    const now = Date.now()
-    if (now - lastScrollTopTime < 100) return // Only process every 100ms
-    lastScrollTopTime = now
+  // Show/hide scroll button based on scroll position
+  let ticking = false
 
-    if (window.pageYOffset > 300) {
-      scrollBtn.classList.add("active")
-    } else {
-      scrollBtn.classList.remove("active")
-    }
-  })
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.pageYOffset > 300) {
+            scrollBtn.classList.add("active")
+          } else {
+            scrollBtn.classList.remove("active")
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    },
+    { passive: true },
+  )
 
   // Scroll to top when button is clicked
   scrollBtn.addEventListener("click", () => {
@@ -218,6 +260,7 @@ function initScrollToTop() {
 function initScrollAnimations() {
   // Use IntersectionObserver for better performance
   const animateElements = document.querySelectorAll(".feature-card, .about-content, .about-image")
+  if (!animateElements.length) return
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -239,42 +282,38 @@ function initScrollAnimations() {
   })
 }
 
-// Header scroll effect - Works on all pages
+// Header scroll effect - Optimized with requestAnimationFrame
 function initHeaderScroll() {
   const header = document.querySelector("header")
-
-  if (!header) {
-    console.error("Header element not found!")
-    return
-  }
-
-  console.log("Header scroll effect initialized")
-
-  // Add a class to indicate the script is loaded
-  document.body.classList.add("script-loaded")
+  if (!header) return
 
   // Function to update header class based on scroll position
   function updateHeaderClass() {
     if (window.pageYOffset > 50) {
-      header.classList.add("scrolled")
-      console.log("Added scrolled class", window.pageYOffset)
-    } else {
+      if (!header.classList.contains("scrolled")) {
+        header.classList.add("scrolled")
+      }
+    } else if (header.classList.contains("scrolled")) {
       header.classList.remove("scrolled")
-      console.log("Removed scrolled class", window.pageYOffset)
     }
   }
 
-  // Throttle scroll event
+  // Use requestAnimationFrame for better performance
   let ticking = false
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateHeaderClass()
-        ticking = false
-      })
-      ticking = true
-    }
-  })
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateHeaderClass()
+          ticking = false
+        })
+        ticking = true
+      }
+    },
+    { passive: true },
+  )
 
   // Set initial state on page load
   updateHeaderClass()
