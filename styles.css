@@ -156,18 +156,20 @@ img {
   transform-origin: left;
 }
 
+/* Update the tech-background class to ensure it spans the entire hero section on all screen sizes */
 .tech-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),
     url("img/HomepageHeroOffice.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   z-index: -1;
+  will-change: transform, height; /* Optimize for animations */
 }
 
 @keyframes patternFloat {
@@ -361,11 +363,33 @@ nav ul li a.active {
   color: var(--primary-blue);
 }
 
-/* Hero Section */
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--primary-blue);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 5px;
+  z-index: 102;
+}
+
+.mobile-menu-toggle:hover {
+  color: var(--primary-teal);
+}
+
+/* Update the hero section to ensure proper positioning and containment */
 .hero {
-  padding: 100px 0 80px;
   position: relative;
-  overflow: hidden;
+  padding: 100px 0 80px;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  overflow: hidden; /* Add overflow hidden to contain all elements */
+  width: 100%; /* Ensure full width */
 }
 
 .hero::before {
@@ -435,18 +459,6 @@ nav ul li a.active {
 
 .hero-content h1:hover {
   transform: translateY(-3px);
-}
-
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-content h1 {
-    font-size: 2rem;
-  }
 }
 
 @keyframes fadeInUp {
@@ -631,7 +643,7 @@ nav ul li a.active {
 
 .features .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   position: relative;
   z-index: 1;
@@ -756,6 +768,7 @@ nav ul li a.active {
   background: radial-gradient(circle, rgba(0, 169, 157, 0.1) 0%, rgba(0, 169, 157, 0) 70%);
 }
 
+/* Update the about-preview container to add more padding to accommodate the absolutely positioned elements */
 .about-preview .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -763,12 +776,14 @@ nav ul li a.active {
   align-items: center;
   position: relative;
   z-index: 1;
+  padding: 30px; /* Add padding to contain the absolutely positioned elements */
 }
 
 .about-content {
   position: relative;
 }
 
+/* Update the about-content::before positioning to ensure it stays within the container */
 .about-content::before {
   content: "";
   position: absolute;
@@ -779,8 +794,10 @@ nav ul li a.active {
   background: var(--gradient);
   opacity: 0.2;
   border-radius: 8px;
+  z-index: -1; /* Ensure it stays behind the content */
 }
 
+/* Update the about-content h2 styling to make it display inline-block on smaller screens */
 .about-content h2 {
   font-size: 3rem;
   margin-bottom: 20px;
@@ -796,6 +813,22 @@ nav ul li a.active {
   height: 4px;
   background: var(--gradient);
   border-radius: 2px;
+}
+
+/* Add this media query to adjust the h2 element on smaller screens */
+@media (max-width: 992px) {
+  .about-content h2 {
+    display: inline-block;
+    width: auto;
+    margin: 0 auto 20px;
+  }
+
+  /* Adjust the ::before element position to align with the h2 text */
+  .about-content::before {
+    top: -15px;
+    left: 50%;
+    transform: translateX(-150px);
+  }
 }
 
 .about-content p {
@@ -826,21 +859,23 @@ nav ul li a.active {
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* Update the tech-frame positioning to ensure it's visible and offset to the bottom right */
 .tech-frame {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 15px;
+  left: 15px;
   width: 100%;
   height: 100%;
   border: 2px solid var(--primary-blue);
   border-radius: 10px;
   z-index: -1;
   transition: all 0.5s ease;
+  display: block; /* Ensure it's displayed */
 }
 
 .about-image:hover .tech-frame {
-  top: 30px;
-  left: 30px;
+  top: 25px;
+  left: 25px;
   border-color: var(--primary-teal);
 }
 
@@ -971,14 +1006,14 @@ nav ul li a.active {
 
 .customers-intro {
   text-align: center;
-  max-width: 900px; /* Increased from 800px */
+  max-width: 900px;
   margin: 0 auto 50px;
-  color: var(--gray-color);
+  color: var(--dark-gray);
   font-size: 1.4rem;
 }
 
 .logo-slideshow {
-  max-width: 1300px; /* Increased from 1100px */
+  max-width: 1300px;
   margin: 0 auto;
   position: relative;
   padding: 20px 0;
@@ -988,7 +1023,7 @@ nav ul li a.active {
   display: flex;
   overflow: hidden;
   position: relative;
-  min-height: 280px;
+  min-height: 180px; /* Further reduced from 220px */
   border-radius: 10px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 119, 182, 0.15);
@@ -999,7 +1034,7 @@ nav ul li a.active {
   flex: 0 0 100%;
   display: flex;
   align-items: center;
-  padding: 40px;
+  padding: 20px; /* Further reduced from 30px */
   opacity: 0;
   position: absolute;
   top: 0;
@@ -1007,7 +1042,7 @@ nav ul li a.active {
   width: 100%;
   height: 100%;
   transition: opacity 0.5s ease;
-  gap: 40px;
+  gap: 20px; /* Reduced from 30px */
 }
 
 .logo-slide.active {
@@ -1016,36 +1051,37 @@ nav ul li a.active {
 }
 
 .logo-image {
-  flex: 0 0 250px;
+  flex: 0 0 180px; /* Reduced from 200px */
   display: flex;
   align-items: center;
   justify-content: center;
   width: auto;
-  padding: 20px;
+  padding: 10px; /* Reduced from 15px */
   border-right: 1px solid rgba(0, 119, 182, 0.1);
 }
 
 .logo-info {
   flex: 1;
   padding-left: 20px;
+  overflow: hidden; /* Prevent text overflow */
 }
 
 .customer-logo {
-  max-width: 220px;
-  max-height: 100px;
+  max-width: 180px; /* Reduced from 220px */
+  max-height: 80px; /* Reduced from 100px */
   width: auto;
 }
 
 .customer-name {
   font-weight: 600;
-  color: var(--dark-color);
-  margin-bottom: 18px; /* Increased from 15px */
+  color: var(--dark-gray);
+  margin-bottom: 10px; /* Reduced from 15px */
   font-size: 2rem; /* Increased from 1.8rem */
 }
 
 .customer-description {
-  color: var(--gray-color);
-  line-height: 1.7;
+  color: var(--dark-gray);
+  line-height: 1.5; /* Adjusted from 1.6 */
   font-size: 1.3rem; /* Increased from 1.2rem */
 }
 
@@ -1094,12 +1130,143 @@ nav ul li a.active {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: var(--primary-color);
+  color: var(--primary-blue);
   font-size: 1.1rem;
 }
 
 .arrow:hover {
   transform: scale(1.08);
+}
+
+/* Add responsive styles for customers section */
+@media (max-width: 992px) {
+  .customers {
+    padding: 80px 0;
+  }
+
+  .customers-intro {
+    font-size: 1.2rem;
+    max-width: 90%;
+  }
+
+  .logo-container {
+    min-height: 220px; /* Reduced from 260px */
+  }
+
+  .customer-name {
+    font-size: 1.9rem; /* Increased from 1.8rem */
+    margin-bottom: 10px; /* Reduced from 15px */
+  }
+
+  .customer-description {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+  }
+}
+
+@media (max-width: 768px) {
+  .customers {
+    padding: 60px 0;
+  }
+
+  .logo-slide {
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-container {
+    min-height: 280px; /* Reduced from 320px */
+  }
+
+  .logo-image {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 119, 182, 0.1);
+    padding: 0 0 20px 0;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .logo-info {
+    padding-left: 0;
+    padding-top: 20px;
+  }
+
+  .customer-name {
+    font-size: 1.7rem; /* Increased from 1.6rem */
+    margin-bottom: 8px; /* Reduced from 12px */
+  }
+
+  .customer-description {
+    font-size: 1.1rem; /* Increased from 1rem */
+    max-height: 180px; /* Reduced from 200px to match smaller container */
+  }
+
+  .customer-logo {
+    max-width: 180px;
+    max-height: 80px;
+  }
+
+  .arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .customers {
+    padding: 40px 0;
+  }
+
+  .logo-slide {
+    display: flex; /* Change from flex to inline-flex */
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .logo-container {
+    min-height: 320px; /* Reduced from 380px */
+  }
+
+  .customer-name {
+    font-size: 1.5rem; /* Increased from 1.4rem */
+    margin-bottom: 8px; /* Reduced from 10px */
+  }
+
+  .customer-description {
+    font-size: 1rem; /* Increased from 0.9rem */
+    line-height: 1.4;
+    max-height: 200px; /* Reduced from 250px */
+  }
+
+  .customer-logo {
+    max-width: 150px;
+    max-height: 70px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+  }
+
+  .arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .slideshow-controls {
+    margin-top: 20px;
+  }
+
+  .slideshow-dots {
+    margin-bottom: 15px;
+  }
 }
 
 /* Footer */
@@ -1110,7 +1277,7 @@ footer {
   position: relative;
 }
 
-/* Footer */
+/* Footer Styles - Updated for better mobile responsiveness */
 footer {
   background-color: #222;
   color: var(--white);
@@ -1131,7 +1298,7 @@ footer::before {
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
   gap: 40px;
   margin-bottom: 40px;
   position: relative;
@@ -1166,10 +1333,13 @@ footer::before {
   transition: all 0.3s ease;
 }
 
+/* Update the footer-section a styles to make hover effects only apply to the text */
 .footer-section a {
   margin-bottom: 15px;
   color: #aaa;
   transition: all 0.3s ease;
+  display: inline-block; /* Change from block to inline-block */
+  position: relative;
 }
 
 .footer-section a::after {
@@ -1299,6 +1469,136 @@ footer::before {
   color: #ddd;
 }
 
+/* Improved footer responsive styles */
+@media (max-width: 992px) {
+  .footer-content {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .footer-section {
+    text-align: left; /* Keep text left-aligned on medium screens */
+  }
+
+  .footer-section h3::after {
+    left: 0;
+    transform: none;
+  }
+
+  .social-icons {
+    justify-content: flex-start;
+  }
+}
+
+/* Update the footer-content grid layout for better mobile responsiveness */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .footer-section {
+    text-align: center;
+    padding: 0 15px 25px;
+  }
+
+  .footer-section h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* Add these new styles for better footer layout on smaller screens */
+@media (max-width: 576px) {
+  footer {
+    padding: 40px 0 15px;
+  }
+
+  .footer-content {
+    display: flex;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  .footer-section {
+    padding: 0 10px 20px;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .footer-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* Make contact information more readable on mobile */
+  .footer-section a {
+    display: inline-flex; /* Change from flex to inline-flex */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .footer-section a i {
+    width: 20px;
+    text-align: center;
+  }
+
+  /* Improve quick links display on mobile */
+  .footer-section ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .footer-section ul li {
+    margin-bottom: 0;
+  }
+
+  /* Adjust footer bottom spacing */
+  .footer-bottom {
+    padding-top: 15px;
+    margin-top: 10px;
+  }
+
+  .footer-bottom p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Add styles for extra small screens */
+@media (max-width: 375px) {
+  .footer-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .footer-section a,
+  .footer-section p {
+    font-size: 0.85rem;
+  }
+
+  .footer-section ul li a {
+    font-size: 0.85rem;
+  }
+
+  .social-icons {
+    gap: 10px;
+  }
+
+  .social-icons a {
+    width: 35px;
+    height: 35px;
+  }
+}
+
 /* Scroll Animations */
 @keyframes fadeInUp {
   from {
@@ -1393,6 +1693,28 @@ footer::before {
     left: 50%;
     transform: translateX(-50%);
   }
+
+  /* Hide hero-visual on smaller screens */
+  .hero-visual {
+    display: none;
+  }
+
+  /* Adjust feature card text sizes for medium screens */
+  .features .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feature-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .feature-content p {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1400,78 +1722,242 @@ footer::before {
     --header-height: 70px;
   }
 
+  /* Mobile Menu Styles */
   header .container {
-    flex-direction: column;
-    padding: 10px 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
   }
 
-  header.scrolled {
-    height: auto;
+  .mobile-menu-toggle {
+    display: block;
   }
 
   nav {
-    margin-top: 15px;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 101; /* Higher than the overlay (99) */
+    padding: 80px 20px 20px;
+    overflow-y: auto;
+  }
+
+  nav.active {
+    right: 0;
+    pointer-events: auto; /* Ensure clicks work on the menu */
+  }
+
+  /* Change this to make menu items display in columns */
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
   }
 
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
   nav ul li {
-    margin: 0 15px 10px;
+    margin: 0 0 15px 0;
+    width: 100%;
+    text-align: left;
   }
 
-  .section-title,
-  .hero-content h1,
-  .about-content h2,
-  .cta h2 {
-    font-size: 2rem;
+  nav ul li a {
+    display: block;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    width: 100%;
+    position: relative; /* Ensure it's above the overlay */
+    z-index: 102; /* Higher than nav itself */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
-  .logo-slide {
-    grid-template-columns: 1fr;
-    text-align: center;
+  nav ul li a::after {
+    bottom: 0;
+    height: 3px;
   }
 
-  .logo-info::before {
-    display: none;
+  /* Overlay when menu is open */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99; /* Lower z-index than the menu (101) */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none; /* Allow clicks to pass through */
   }
-}
 
-@media (max-width: 576px) {
-  .hero-content h1 {
+  body.menu-open::after {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Re-enable pointer events when visible */
+  }
+
+  /* Fix for scrolled header on mobile */
+  header.scrolled {
+    height: var(--header-height);
+  }
+
+  /* Fix for hero section height and positioning on smaller screens */
+  .hero {
+    min-height: calc(100vh - var(--header-height));
+    padding: 60px 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .hero .container {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  /* Fix tech background on mobile */
+  .tech-background {
+    position: absolute; /* Changed from fixed for better mobile performance */
+    width: 100%;
+    height: 100%;
+    background-attachment: scroll; /* Better performance on mobile */
+  }
+
+  /* Ensure hero content is properly contained */
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* Adjust hero features for better mobile display */
+  .hero-features {
+    width: 100%;
+  }
+
+  .hero-feature {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .hero-feature p {
+    font-size: 1rem;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Further reduce text sizes for smaller screens */
+  .feature-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .feature-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+  }
+
+  .feature-icon i {
     font-size: 1.8rem;
   }
 
-  .btn-cta {
-    padding: 12px 20px;
-    font-size: 1rem;
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
   }
 
+  /* Reduce padding in feature cards */
   .feature-card {
-    padding: 20px;
+    padding: 25px 20px;
+  }
+}
+
+/* Additional fixes for extra small screens */
+@media (max-width: 576px) {
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero-content h1 {
+    font-size: 1.6rem;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+    width: 100%;
+  }
+
+  /* Ensure the contact button is properly sized */
+  .btn-cta {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+
+  /* Ensure company name and tagline fit properly */
+  .company-name h2 {
+    font-size: 1.6rem;
+    width: 100%;
+  }
+
+  .company-name p {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  /* Ensure the background covers the entire hero section on small screens */
+  .tech-background {
+    height: 100%; /* Will be dynamically set by JavaScript */
+  }
+
+  /* Single column layout for features on small screens */
+  .features .container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Make feature cards more compact on small screens */
+  .feature-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .feature-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
 
   .feature-icon {
     width: 60px;
     height: 60px;
+    margin-bottom: 15px;
   }
 
-  .section-title::after {
-    width: 60px;
+  .feature-icon i {
+    font-size: 1.6rem;
   }
 
-  .about-content::before {
-    display: none;
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 1.8rem;
   }
 
-  .scroll-top {
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
+  /* Reduce padding in feature cards even more */
+  .feature-card {
+    padding: 20px 15px;
   }
 }
 
@@ -1497,4 +1983,68 @@ footer::before {
 
 .dark-mode-toggle:hover {
   transform: rotate(45deg);
+}
+
+/* Add a media query to adjust container padding on smaller screens */
+@media (max-width: 768px) {
+  .about-preview .container {
+    padding: 40px 30px; /* Increase padding on smaller screens */
+  }
+
+  /* Adjust the about-content::before position on mobile */
+  .about-content::before {
+    top: -15px;
+    left: -15px;
+  }
+}
+
+/* Hide the tech frame on smaller screens */
+@media (max-width: 992px) {
+  .tech-frame {
+    display: none; /* Hide on smaller screens */
+  }
+}
+
+/* Update the CTA section to be more compact on smaller screens */
+@media (max-width: 992px) {
+  .cta {
+    padding: 80px 0; /* Reduced from 100px */
+  }
+
+  .cta h2 {
+    font-size: 2.5rem; /* Reduced from 3rem */
+  }
+}
+
+@media (max-width: 768px) {
+  .cta {
+    padding: 60px 0; /* Further reduced padding */
+  }
+
+  .cta h2 {
+    font-size: 2.2rem; /* Further reduced font size */
+    margin-bottom: 15px; /* Reduced margin */
+  }
+
+  .cta p {
+    font-size: 1.1rem; /* Slightly smaller paragraph text */
+    margin-bottom: 25px; /* Reduced margin */
+  }
+}
+
+@media (max-width: 576px) {
+  .cta {
+    padding: 40px 0; /* Even smaller padding for mobile */
+  }
+
+  .cta h2 {
+    font-size: 1.8rem; /* Much smaller heading for mobile */
+    margin-bottom: 12px;
+  }
+
+  .cta p {
+    font-size: 1rem; /* Smaller paragraph text */
+    margin-bottom: 20px;
+    max-width: 90%; /* Ensure text doesn't get too wide */
+  }
 }

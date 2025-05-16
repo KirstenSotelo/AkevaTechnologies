@@ -1,320 +1,458 @@
-// Set current year in footer
-document.addEventListener("DOMContentLoaded", () => {
-  // Set current year in footer if the element exists
-  const currentYearElement = document.getElementById("currentYear")
-  if (currentYearElement) {
-    currentYearElement.textContent = new Date().getFullYear()
+// Use a self-executing function to avoid polluting the global namespace
+;(() => {
+  // Cache DOM selectors we'll use multiple times
+  const DOM = {
+    currentYear: document.getElementById("currentYear"),
+    header: document.querySelector("header"),
+    navLinks: document.querySelectorAll("nav ul li a"),
+    sections: Array.from(document.querySelectorAll("section[id]")),
+    animateElements: document.querySelectorAll(".feature-card, .about-content, .about-image"),
+    slides: document.querySelectorAll(".logo-slide"),
+    dots: document.querySelectorAll(".dot"),
+    prevBtn: document.querySelector(".prev"),
+    nextBtn: document.querySelector(".next"),
+    dotsContainer: document.querySelector(".slideshow-dots"),
+    mobileMenuToggle: document.querySelector(".mobile-menu-toggle"),
+    nav: document.querySelector("nav"),
+    scrollTop: document.querySelector(".scroll-top"),
+    // Add hero and tech background elements
+    heroSection: document.querySelector(".hero"),
+    techBackground: document.querySelector(".tech-background"),
   }
 
-  // Initialize all functionality
-  // Only call functions if their required elements exist
-  if (document.querySelector(".logo-slide")) {
-    initLogoSlideshow()
+  // Initialize on DOMContentLoaded with a single event listener
+  document.addEventListener("DOMContentLoaded", init)
+
+  // Main initialization function
+  function init() {
+    // Set current year
+    if (DOM.currentYear) {
+      DOM.currentYear.textContent = new Date().getFullYear()
+    }
+
+    // Initialize features only if their elements exist
+    if (DOM.slides.length) initLogoSlideshow()
+    if (DOM.navLinks.length) initNavLinks()
+    if (DOM.header) initHeaderScroll()
+    if (DOM.animateElements.length) initScrollAnimations()
+    if (DOM.mobileMenuToggle) initMobileMenu()
+    if (DOM.heroSection && DOM.techBackground) initBackgroundAdjustment()
+
+    // These are always initialized
+    initSmoothScrolling()
+    initScrollToTop()
   }
 
-  initSmoothScrolling()
-  initNavLinks()
-  initScrollToTop()
+  // New function to handle background adjustment
+  function initBackgroundAdjustment() {
+    // Initial adjustment
+    adjustBackgroundHeight()
+    adjustTechFrameVisibility()
 
-  if (document.querySelector(".feature-card, .about-content, .about-image")) {
-    initScrollAnimations()
+    // Create a ResizeObserver to monitor hero section size changes
+    if ("ResizeObserver" in window) {
+      const resizeObserver = new ResizeObserver((entries) => {
+        // When hero section size changes, adjust background
+        adjustBackgroundHeight()
+        adjustTechFrameVisibility()
+      })
+
+      // Observe the hero section
+      resizeObserver.observe(DOM.heroSection)
+    } else {
+      // Fallback for browsers without ResizeObserver
+      window.addEventListener("resize", adjustBackgroundHeight, { passive: true })
+      window.addEventListener("resize", adjustTechFrameVisibility, { passive: true })
+    }
+
+    // Also adjust on scroll for dynamic content changes
+    window.addEventListener("scroll", adjustBackgroundHeight, { passive: true })
+    window.addEventListener("scroll", adjustTechFrameVisibility, { passive: true })
   }
 
-  // Always initialize header scroll effect
-  initHeaderScroll()
-})
+  // Function to adjust background height based on content
+  function adjustBackgroundHeight() {
+    if (!DOM.heroSection || !DOM.techBackground) return
 
-// Logo Slideshow Functionality - Optimized
-function initLogoSlideshow() {
-  const slides = document.querySelectorAll(".logo-slide")
-  const dots = document.querySelectorAll(".dot")
-  const prevBtn = document.querySelector(".prev")
-  const nextBtn = document.querySelector(".next")
-  let currentSlide = 0
-  let slideInterval
-  let isTransitioning = false
+    // On mobile, ensure the background covers at least the hero section
+    if (window.innerWidth <= 768) {
+      const heroHeight = DOM.heroSection.offsetHeight
+      const windowHeight = window.innerHeight
+      const headerHeight = DOM.header ? DOM.header.offsetHeight : 0
 
-  // Function to show a specific slide with debounce
-  function showSlide(index) {
-    if (isTransitioning) return
-    isTransitioning = true
+      // Set background height to the maximum of hero height or window height
+      DOM.techBackground.style.height = Math.max(heroHeight + headerHeight, windowHeight) + "px"
 
-    // Hide all slides
-    slides.forEach((slide) => {
-      slide.classList.remove("active")
+      // Change position to absolute on mobile for better performance
+      DOM.techBackground.style.position = "absolute"
+    } else {
+      // Reset to viewport height and fixed position on larger screens
+      DOM.techBackground.style.height = "100vh"
+      DOM.techBackground.style.position = "fixed"
+    }
+  }
+
+  // Function to adjust tech-frame visibility based on screen size
+  function adjustTechFrameVisibility() {
+    const techFrames = document.querySelectorAll(".tech-frame")
+    if (techFrames.length === 0) return
+
+    // Hide tech-frame on smaller screens
+    if (window.innerWidth <= 992) {
+      techFrames.forEach((frame) => {
+        frame.style.display = "none"
+      })
+    } else {
+      techFrames.forEach((frame) => {
+        frame.style.display = "block"
+      })
+    }
+  }
+
+  // Mobile menu functionality
+function initMobileMenu() {
+  if (!DOM.mobileMenuToggle || !DOM.nav) return
+
+  // Toggle menu when button is clicked
+  DOM.mobileMenuToggle.addEventListener("click", (e) => {
+    e.stopPropagation()
+    DOM.nav.classList.toggle("active")
+    document.body.classList.toggle("menu-open")
+
+    // Change icon based on menu state
+    const icon = DOM.mobileMenuToggle.querySelector("i")
+    if (DOM.nav.classList.contains("active")) {
+      icon.classList.remove("fa-bars")
+      icon.classList.add("fa-times")
+    } else {
+      icon.classList.remove("fa-times")
+      icon.classList.add("fa-bars")
+    }
+
+    // Adjust background when menu opens/closes
+    if (DOM.heroSection && DOM.techBackground) {
+      adjustBackgroundHeight()
+    }
+  })
+
+  // Close menu when clicking on a link
+  const navLinks = DOM.nav.querySelectorAll("a")
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      // Don't stop propagation here to allow normal link behavior
+      DOM.nav.classList.remove("active")
+      document.body.classList.remove("menu-open")
+
+      // Change icon back to bars
+      const icon = DOM.mobileMenuToggle.querySelector("i")
+      icon.classList.remove("fa-times")
+      icon.classList.add("fa-bars")
     })
+  })
 
-    // Remove active class from all dots
-    dots.forEach((dot) => {
-      dot.classList.remove("active")
-    })
+  // Close menu when clicking the overlay (body::after)
+  document.addEventListener("click", (e) => {
+    // Check if the click is on the overlay (not on the menu or toggle button)
+    if (
+      DOM.nav.classList.contains("active") &&
+      !DOM.nav.contains(e.target) &&
+      !DOM.mobileMenuToggle.contains(e.target)
+    ) {
+      DOM.nav.classList.remove("active")
+      document.body.classList.remove("menu-open")
 
-    // Show the current slide and activate the corresponding dot
-    slides[index].classList.add("active")
-    dots[index].classList.add("active")
+      // Change icon back to bars
+      const icon = DOM.mobileMenuToggle.querySelector("i")
+      icon.classList.remove("fa-times")
+      icon.classList.add("fa-bars")
+    }
+  })
 
-    // Update current slide index
-    currentSlide = index
+  // Close menu on window resize if screen becomes large
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768 && DOM.nav.classList.contains("active")) {
+      DOM.nav.classList.remove("active")
+      document.body.classList.remove("menu-open")
 
-    // Reset transition lock after animation completes
-    setTimeout(() => {
-      isTransitioning = false
-    }, 600)
-  }
+      // Change icon back to bars
+      const icon = DOM.mobileMenuToggle.querySelector("i")
+      icon.classList.remove("fa-times")
+      icon.classList.add("fa-bars")
+    }
+  })
+}
 
-  // Event listeners for dots - using event delegation
-  const dotsContainer = document.querySelector(".slideshow-dots")
-  if (dotsContainer) {
-    dotsContainer.addEventListener("click", (e) => {
-      if (e.target.classList.contains("dot")) {
-        const slideIndex = Number.parseInt(e.target.getAttribute("data-index"), 10)
-        showSlide(slideIndex)
+
+  // Logo Slideshow - Highly optimized
+  function initLogoSlideshow() {
+    let currentSlide = 0
+    let slideInterval
+    let isTransitioning = false
+    const slidesCount = DOM.slides.length
+
+    // Pre-calculate next and previous indices for better performance
+    const nextIndices = new Array(slidesCount).fill(0).map((_, i) => (i + 1) % slidesCount)
+    const prevIndices = new Array(slidesCount).fill(0).map((_, i) => (i - 1 + slidesCount) % slidesCount)
+
+    // Show slide with optimized class toggling
+    function showSlide(index) {
+      if (isTransitioning || index === currentSlide) return
+      isTransitioning = true
+
+      // Remove active class from current slide and dot
+      DOM.slides[currentSlide].classList.remove("active")
+      DOM.dots[currentSlide].classList.remove("active")
+
+      // Add active class to new slide and dot
+      DOM.slides[index].classList.add("active")
+      DOM.dots[index].classList.add("active")
+
+      // Update current slide index
+      currentSlide = index
+
+      // Reset transition lock after animation completes
+      setTimeout(() => {
+        isTransitioning = false
+      }, 600)
+    }
+
+    // Event delegation for dots
+    if (DOM.dotsContainer) {
+      DOM.dotsContainer.addEventListener("click", (e) => {
+        if (e.target.classList.contains("dot")) {
+          const slideIndex = Number.parseInt(e.target.getAttribute("data-index"), 10)
+          showSlide(slideIndex)
+          resetInterval()
+        }
+      })
+    }
+
+    // Previous button click handler
+    if (DOM.prevBtn) {
+      DOM.prevBtn.addEventListener("click", () => {
+        showSlide(prevIndices[currentSlide])
         resetInterval()
-      }
-    })
-  }
+      })
+    }
 
-  // Event listener for previous button
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      let newIndex = currentSlide - 1
-      if (newIndex < 0) {
-        newIndex = slides.length - 1
-      }
-      showSlide(newIndex)
-      resetInterval()
-    })
-  }
+    // Next button click handler
+    if (DOM.nextBtn) {
+      DOM.nextBtn.addEventListener("click", () => {
+        showSlide(nextIndices[currentSlide])
+        resetInterval()
+      })
+    }
 
-  // Event listener for next button
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      let newIndex = currentSlide + 1
-      if (newIndex >= slides.length) {
-        newIndex = 0
-      }
-      showSlide(newIndex)
-      resetInterval()
-    })
-  }
+    // Auto-advance interval
+    function startInterval() {
+      slideInterval = setInterval(() => {
+        showSlide(nextIndices[currentSlide])
+      }, 5000)
+    }
 
-  // Start auto-advance interval
-  function startInterval() {
-    slideInterval = setInterval(() => {
-      let newIndex = currentSlide + 1
-      if (newIndex >= slides.length) {
-        newIndex = 0
-      }
-      showSlide(newIndex)
-    }, 5000)
-  }
+    // Reset interval
+    function resetInterval() {
+      clearInterval(slideInterval)
+      startInterval()
+    }
 
-  // Reset interval when user interacts
-  function resetInterval() {
-    clearInterval(slideInterval)
+    // Initialize slideshow
     startInterval()
   }
 
-  // Initialize slideshow
-  startInterval()
-}
+  // Smooth scrolling with optimized event delegation
+  function initSmoothScrolling() {
+    // Use event delegation for all anchor clicks
+    document.addEventListener("click", (e) => {
+      // Find closest anchor or return if none
+      const anchor = e.target.closest('a[href^="#"]')
+      if (!anchor) return
 
-// Smooth scrolling for anchor links - Optimized with passive event listener
-function initSmoothScrolling() {
-  document.addEventListener("click", (e) => {
-    const anchor = e.target.closest('a[href^="#"]')
-    if (!anchor) return
+      const targetId = anchor.getAttribute("href")
+      if (targetId === "#") return
 
-    const targetId = anchor.getAttribute("href")
-    if (targetId === "#") return
+      const targetElement = document.querySelector(targetId)
+      if (targetElement) {
+        e.preventDefault()
 
-    const targetElement = document.querySelector(targetId)
-    if (targetElement) {
-      e.preventDefault()
+        // Use native scrollIntoView for better performance
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        })
+      }
+    })
+  }
+
+  // Nav links active state with IntersectionObserver
+  function initNavLinks() {
+    const currentPath = window.location.pathname
+
+    // Set active state for current page
+    DOM.navLinks.forEach((link) => {
+      const linkPath = link.getAttribute("href")
+
+      if (
+        linkPath === currentPath ||
+        (currentPath === "/" && linkPath === "index.html") ||
+        (currentPath === "/index.html" && linkPath === "index.html")
+      ) {
+        link.classList.add("active")
+      } else if (linkPath !== "#" && currentPath.includes(linkPath)) {
+        link.classList.add("active")
+      }
+    })
+
+    // Only set up scroll-based active states on homepage
+    if (currentPath === "/" || currentPath === "/index.html" || currentPath.endsWith("index.html")) {
+      // Use IntersectionObserver instead of scroll events
+      if (DOM.sections.length && "IntersectionObserver" in window) {
+        const navObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const sectionId = entry.target.id
+
+                // Update active nav links
+                DOM.navLinks.forEach((link) => {
+                  const linkHref = link.getAttribute("href")
+                  if (linkHref && linkHref.startsWith("#")) {
+                    if (linkHref === "#" + sectionId) {
+                      link.classList.add("active")
+                    } else {
+                      link.classList.remove("active")
+                    }
+                  }
+                })
+              }
+            })
+          },
+          { threshold: 0.3, rootMargin: "-100px 0px -300px 0px" },
+        )
+
+        // Observe all sections
+        DOM.sections.forEach((section) => {
+          navObserver.observe(section)
+        })
+      }
+    }
+  }
+
+  // Scroll to top button with IntersectionObserver
+  function initScrollToTop() {
+    // If scroll-top button already exists in HTML, use that instead of creating a new one
+    let scrollBtn = DOM.scrollTop
+
+    if (!scrollBtn) {
+      // Create button only once
+      scrollBtn = document.createElement("div")
+      scrollBtn.classList.add("scroll-top")
+      scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>'
+      document.body.appendChild(scrollBtn)
+    }
+
+    // Use IntersectionObserver to detect when we're far enough down the page
+    const topSentinel = document.createElement("div")
+    topSentinel.style.height = "1px"
+    topSentinel.style.position = "absolute"
+    topSentinel.style.top = "300px"
+    topSentinel.style.left = "0"
+    topSentinel.style.width = "100%"
+    topSentinel.style.pointerEvents = "none"
+    topSentinel.style.opacity = "0"
+    document.body.appendChild(topSentinel)
+
+    const scrollObserver = new IntersectionObserver(
+      (entries) => {
+        // When sentinel is out of view (scrolled past), show button
+        if (!entries[0].isIntersecting) {
+          scrollBtn.classList.add("active")
+        } else {
+          scrollBtn.classList.remove("active")
+        }
+      },
+      { threshold: 0 },
+    )
+
+    scrollObserver.observe(topSentinel)
+
+    // Scroll to top when button is clicked
+    scrollBtn.addEventListener("click", () => {
       window.scrollTo({
-        top: targetElement.offsetTop - 100,
+        top: 0,
         behavior: "smooth",
       })
-    }
-  })
-}
+    })
+  }
 
-// Nav links active state - Optimized with requestAnimationFrame
-function initNavLinks() {
-  const navLinks = document.querySelectorAll("nav ul li a")
-  if (!navLinks.length) return
+  // Scroll animations with optimized IntersectionObserver
+  function initScrollAnimations() {
+    // Create a single IntersectionObserver instance
+    const animationObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Add animation class and stop observing
+            entry.target.classList.add("fade-in-up")
+            animationObserver.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      },
+    )
 
-  const currentPath = window.location.pathname
+    // Observe all animation elements
+    DOM.animateElements.forEach((element) => {
+      animationObserver.observe(element)
+    })
+  }
 
-  // First, handle active state based on current page
-  navLinks.forEach((link) => {
-    const linkPath = link.getAttribute("href")
+  // Header scroll effect with IntersectionObserver
+  function initHeaderScroll() {
+    // Create a sentinel element to detect scroll position
+    const headerSentinel = document.createElement("div")
+    headerSentinel.style.height = "1px"
+    headerSentinel.style.position = "absolute"
+    headerSentinel.style.top = "50px" // Keep this the same
+    headerSentinel.style.left = "0"
+    headerSentinel.style.width = "100%"
+    headerSentinel.style.pointerEvents = "none"
+    headerSentinel.style.opacity = "0"
+    document.body.appendChild(headerSentinel)
 
-    // Check if this is the current page
-    if (
-      linkPath === currentPath ||
-      (currentPath === "/" && linkPath === "index.html") ||
-      (currentPath === "/index.html" && linkPath === "index.html")
-    ) {
-      // This is the current page's link
-      link.classList.add("active")
-    } else if (linkPath !== "#" && currentPath.includes(linkPath)) {
-      // This handles subpages
-      link.classList.add("active")
-    }
-  })
+    // Use IntersectionObserver instead of scroll event
+    const headerObserver = new IntersectionObserver(
+      (entries) => {
+        // When sentinel is out of view (scrolled past), add scrolled class
+        if (!entries[0].isIntersecting) {
+          DOM.header.classList.add("scrolled")
+        } else {
+          DOM.header.classList.remove("scrolled")
+        }
+      },
+      {
+        threshold: 0,
+        rootMargin: "-10px 0px 0px 0px", // Adjusted rootMargin for better mobile detection
+      },
+    )
 
-  // Then, handle scroll-based active states only if we're on the homepage
-  if (currentPath === "/" || currentPath === "/index.html" || currentPath.endsWith("index.html")) {
-    // Cache section elements
-    const sections = Array.from(document.querySelectorAll("section")).filter((section) => section.id)
-    if (!sections.length) return
+    headerObserver.observe(headerSentinel)
 
-    // Use requestAnimationFrame for better performance
-    let ticking = false
-
+    // Add a fallback for devices that might have issues with IntersectionObserver
     window.addEventListener(
       "scroll",
       () => {
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            let currentSection = ""
-            const scrollPosition = window.pageYOffset
-
-            // Find current section
-            for (let i = 0; i < sections.length; i++) {
-              const section = sections[i]
-              const sectionTop = section.offsetTop
-
-              if (scrollPosition >= sectionTop - 200) {
-                currentSection = section.id
-              }
-            }
-
-            // Update active links
-            if (currentSection) {
-              navLinks.forEach((link) => {
-                const linkHref = link.getAttribute("href")
-                // Only modify hash links, preserve the active state for page links
-                if (linkHref && linkHref.startsWith("#")) {
-                  if (linkHref === "#" + currentSection) {
-                    if (!link.classList.contains("active")) {
-                      link.classList.add("active")
-                    }
-                  } else {
-                    link.classList.remove("active")
-                  }
-                }
-              })
-            }
-
-            ticking = false
-          })
-          ticking = true
+        if (window.scrollY > 50) {
+          DOM.header.classList.add("scrolled")
+        } else {
+          DOM.header.classList.remove("scrolled")
         }
       },
       { passive: true },
-    )
+    ) // Use passive for better performance
   }
-}
-
-// Scroll to top button - Optimized with requestAnimationFrame
-function initScrollToTop() {
-  // Create scroll to top button
-  const scrollBtn = document.createElement("div")
-  scrollBtn.classList.add("scroll-top")
-  scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>'
-  document.body.appendChild(scrollBtn)
-
-  // Show/hide scroll button based on scroll position
-  let ticking = false
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (window.pageYOffset > 300) {
-            scrollBtn.classList.add("active")
-          } else {
-            scrollBtn.classList.remove("active")
-          }
-          ticking = false
-        })
-        ticking = true
-      }
-    },
-    { passive: true },
-  )
-
-  // Scroll to top when button is clicked
-  scrollBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  })
-}
-
-// Scroll animations - Optimized with IntersectionObserver
-function initScrollAnimations() {
-  // Use IntersectionObserver for better performance
-  const animateElements = document.querySelectorAll(".feature-card, .about-content, .about-image")
-  if (!animateElements.length) return
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in-up")
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    },
-  )
-
-  animateElements.forEach((element) => {
-    observer.observe(element)
-  })
-}
-
-// Header scroll effect - Optimized with requestAnimationFrame
-function initHeaderScroll() {
-  const header = document.querySelector("header")
-  if (!header) return
-
-  // Function to update header class based on scroll position
-  function updateHeaderClass() {
-    if (window.pageYOffset > 50) {
-      if (!header.classList.contains("scrolled")) {
-        header.classList.add("scrolled")
-      }
-    } else if (header.classList.contains("scrolled")) {
-      header.classList.remove("scrolled")
-    }
-  }
-
-  // Use requestAnimationFrame for better performance
-  let ticking = false
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateHeaderClass()
-          ticking = false
-        })
-        ticking = true
-      }
-    },
-    { passive: true },
-  )
-
-  // Set initial state on page load
-  updateHeaderClass()
-}
+})()
