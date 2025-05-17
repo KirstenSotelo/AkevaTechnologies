@@ -17,10 +17,10 @@
                     <img src="img/AkevaTechnologiesLogo.png" alt="Akeva Technologies Logo">
                 </div>
                 <!-- Mobile menu toggle button -->
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" @click="toggleMobileMenu">
+                    <i class="fas" :class="{'fa-bars': !mobileMenuOpen, 'fa-times': mobileMenuOpen}"></i>
                 </button>
-                <nav>
+                <nav :class="{'active': mobileMenuOpen}">
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
@@ -46,21 +46,21 @@
                     <div class="contact-details">
                         <div class="contact-info-item">
                             <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
+                            <div class="contact-text">
                                 <h3>Email</h3>
                                 <p><a href="mailto:contact@akeva-technologies.com">contact@akeva-technologies.com</a></p>
                             </div>
                         </div>
                         <div class="contact-info-item">
                             <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                            <div>
+                            <div class="contact-text">
                                 <h3>Phone</h3>
                                 <p><a href="tel:+14164195683">+1 (416) 419-5683</a></p>
                             </div>
                         </div>
                         <div class="contact-info-item">
                             <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div>
+                            <div class="contact-text">
                                 <h3>Address</h3>
                                 <p>435 St. Laurent Blvd Suite 202,<br> OTTAWA, ON K1K2Z8</p>
                             </div>
@@ -237,6 +237,13 @@
         createApp({
             setup() {
                 const currentYear = ref(new Date().getFullYear());
+                const mobileMenuOpen = ref(false);
+                
+                const toggleMobileMenu = () => {
+                    mobileMenuOpen.value = !mobileMenuOpen.value;
+                    document.body.classList.toggle('menu-open', mobileMenuOpen.value);
+                };
+                
                 const formData = reactive({
                     name: '',
                     email: '',
@@ -337,8 +344,26 @@
                     }
                 };
                 
+                // Close mobile menu when clicking on a link
+                const closeMenuOnNavigation = () => {
+                    if (mobileMenuOpen.value) {
+                        mobileMenuOpen.value = false;
+                        document.body.classList.remove('menu-open');
+                    }
+                };
+                
+                // Add resize event listener to handle window resizing
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768 && mobileMenuOpen.value) {
+                        mobileMenuOpen.value = false;
+                        document.body.classList.remove('menu-open');
+                    }
+                });
+                
                 return {
                     currentYear,
+                    mobileMenuOpen,
+                    toggleMobileMenu,
                     formData,
                     errors,
                     touched,
@@ -347,10 +372,24 @@
                     submitForm,
                     formSubmitted,
                     formSuccess,
-                    formMessage
+                    formMessage,
+                    closeMenuOnNavigation
                 };
             }
         }).mount('#app');
+        
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Add scroll event listener for header styling
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
 
 <script src="script.js" defer></script>
