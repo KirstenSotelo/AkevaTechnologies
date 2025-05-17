@@ -1701,7 +1701,7 @@ footer::before {
 
   /* Adjust feature card text sizes for medium screens */
   .features .container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .feature-content h3 {
