@@ -825,9 +825,7 @@ nav ul li a.active {
 
   /* Adjust the ::before element position to align with the h2 text */
   .about-content::before {
-    top: -15px;
-    left: 50%;
-    transform: translateX(-150px);
+    display:none;
   }
 }
 
@@ -1993,8 +1991,7 @@ footer::before {
 
   /* Adjust the about-content::before position on mobile */
   .about-content::before {
-    top: -15px;
-    left: -15px;
+    isplay:none;
   }
 }
 
