@@ -13,216 +13,236 @@
 </head>
 <body>
     <div id="app">
-        <div class="tech-background"></div>
+        <div class="tech-background" aria-hidden="true"></div>
         
-        <header>
+        <header role="banner">
             <div class="container">
-                <a href="index.html" class="logo" aria-label="Go to homepage">
+                <a href="index.html" class="logo" aria-label="AKEVA TECHNOLOGIES homepage">
                     <img src="img/AkevaTechnologiesLogo.png" alt="AKEVA TECHNOLOGIES Logo" width="75" height="75">
                 </a>
                 <!-- Mobile menu toggle button -->
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
-                <nav>
-                    <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                <nav aria-label="Primary navigation" id="primary-navigation">
+                    <ul role="menubar">
+                        <li role="none"><a href="index.html" class="active" role="menuitem" aria-current="page">Home</a></li>
+                        <li role="none"><a href="about.html" role="menuitem">About</a></li>
+                        <li role="none"><a href="services.html" role="menuitem">Services</a></li>
+                        <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>TRUST BY DESIGN.</h1><h1>GOVERNANCE BY EXPERTS.</h1><h1>COMPLIANCE WITHOUT CHAOS.</h1>
-                    
-                    <div class="hero-features">
-                        <div class="hero-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Full compliance with <strong>ISO 27001</strong>, <strong>ISO/IEC 42001</strong>, <strong>NIST</strong>, <strong>SOC 2</strong>, <strong>GDPR</strong> and other standards</p>
+        <main id="main-content">
+            <section class="hero" aria-labelledby="hero-heading">
+                <div class="container">
+                    <div class="hero-content">
+                        <div id="hero-heading">
+                            <h1>TRUST BY DESIGN.</h1><h1>GOVERNANCE BY EXPERTS.</h1><h1>COMPLIANCE WITHOUT CHAOS.</h1>
                         </div>
-                        <div class="hero-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <p><strong>AI governance policies</strong>, <strong>risk frameworks</strong>, and <strong>trustworthy AI assessments</strong></p>
+                        
+                        <div class="hero-features" aria-label="Key features">
+                            <div class="hero-feature">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                <p>Full compliance with <strong>ISO 27001</strong>, <strong>ISO/IEC 42001</strong>, <strong>NIST</strong>, <strong>SOC 2</strong>, <strong>GDPR</strong> and other standards</p>
+                            </div>
+                            <div class="hero-feature">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                <p><strong>AI governance policies</strong>, <strong>risk frameworks</strong>, and <strong>trustworthy AI assessments</strong></p>
+                            </div>
+                            <div class="hero-feature">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                <p><strong>Tailored cybersecurity</strong> and <strong>data protection strategies</strong></p>
+                            </div>
                         </div>
-                        <div class="hero-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <p><strong>Tailored cybersecurity</strong> and <strong>data protection strategies</strong></p>
+                        
+                        <a href="contact.html" class="btn btn-cta" aria-label="Contact us for cybersecurity and AI governance consulting">Contact Us</a>
+                        
+                        <div class="hero-tagline">
+                            <div class="company-name">
+                                <h2>AKEVA TECHNOLOGIES</h2>
+                                <p>Cybersecurity & AI Governance Consulting</p>
+                            </div>
                         </div>
                     </div>
-                    
-                    <a href="contact.html" class="btn btn-cta">Contact Us</a>
-                    
-                    <div class="hero-tagline">
-                        <div class="company-name">
-                            <h2>AKEVA TECHNOLOGIES</h2>
-                            <p>Cybersecurity & AI Governance Consulting</p>
-                        </div>
+                    <div class="hero-visual" aria-hidden="true">
+                        <img src="img/HeroShield.png" alt="Digital Security Shield illustration" width="500" height="400" loading="eager">
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <img src="img/HeroShield.png" alt="Digital Security Lock" width="500" height="400" loading="eager">
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="features" id="features">
-            <h2 class="section-title">What We <span class="highlight">Ensure</span></h2>
-            <div class="container">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>ISO 27001 <span class="highlight-blue">Cybersecurity</span></h3>
-                        <p>Implement and maintain robust information security management systems that protect your critical assets.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>ISO 42001 <span class="highlight-blue">AI Governance</span></h3>
-                        <p>Navigate the complexities of artificial intelligence with governance frameworks that ensure ethical and compliant AI operations.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3><span class="highlight-blue">Management</span> Systems</h3>
-                        <p>Build integrated management systems that streamline security and governance practices into your organizational culture.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-preview" id="about">
-            <div class="container">
-                <div class="about-content">
-                    <h2>Our <span class="highlight">Mission</span></h2>
-                    <p>At Akeva Technologies, we help organizations navigate the complexities of digital security and artificial intelligence management, enabling them to operate confidently while adhering to the highest standards of governance and risk management.</p>
-                    <a href="about.html" class="btn btn-outline">Learn More <i class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="about-image">
-                    <img src="img/HomepageOurMissionOffice.png" alt="Cybersecurity professionals at work" width="600" height="400" loading="lazy">
-                    <div class="tech-frame"></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta" id="cta">
-            <div class="container">
-                <div class="tech-pattern"></div>
-                <h2>Stay Ahead of <span class="highlight-alt">Regulatory Changes</span></h2>
-                <p>Our services are designed to help you mitigate risks and enhance resilience against cyber threats.</p>
-                <a href="contact.html" class="btn">Contact Us Today <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </section>
-
-        <section class="customers" id="customers">
-            <div class="container">
-                <h2 class="section-title">Our <span class="highlight">Customers</span></h2>
-                <p class="customers-intro">Trusted by leading organizations across industries to ensure AI compliance and cybersecurity excellence.</p>
-                
-                <div class="logo-slideshow">
-                    <div class="logo-container">
-                        <div class="logo-slide active">
-                            <div class="logo-image">
-                                <img src="img/AvayaLogo.png" alt="Customer Logo 1" class="customer-logo" width="220" height="100" loading="lazy">
-                            </div>
-                            <div class="logo-info">
-                                <h3 class="customer-name">Avaya</h3>
-                                <p class="customer-description">Multinational technology company providing cloud communications and workstream collaboration services.</p>
-                            </div>
+            <section class="features" id="features" aria-labelledby="features-heading">
+                <h2 class="section-title" id="features-heading">What We <span class="highlight">Ensure</span></h2>
+                <div class="container">
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                        <div class="logo-slide">
-                            <div class="logo-image">
-                                <img src="img/CernerLogo.png" alt="Customer Logo 2" class="customer-logo" width="220" height="100" loading="lazy">
-                            </div>
-                            <div class="logo-info">
-                                <h3 class="customer-name">Cerner</h3>
-                                <p class="customer-description">Multinational provider of health information technology and services.</p>
-                            </div>
-                        </div>
-                        <div class="logo-slide">
-                            <div class="logo-image">
-                                <img src="img/ComputaCenterLogo.png" alt="Customer Logo 3" class="customer-logo" width="220" height="100" loading="lazy">
-                            </div>
-                            <div class="logo-info">
-                                <h3 class="customer-name">Computacenter</h3>
-                                <p class="customer-description">Computacenter is a leading independent technology and services provider, trusted by large corporate and public sector organisations.</p>
-                            </div>
-                        </div>
-                        <div class="logo-slide">
-                            <div class="logo-image">
-                                <img src="img/TotalLogo.png" alt="Customer Logo 4" class="customer-logo" width="220" height="100" loading="lazy">
-                            </div>
-                            <div class="logo-info">
-                                <h3 class="customer-name">TotalEnergies</h3>
-                                <p class="customer-description">TotalEnergies is a global integrated energy company that produces and markets energies: oil and biofuels, natural gas and green gases, and renewables.</p>
-                            </div>
-                        </div>
-                        <div class="logo-slide">
-                            <div class="logo-image">
-                                <img src="img/VWLogo.png" alt="Customer Logo 5" class="customer-logo" width="220" height="100" loading="lazy">
-                            </div>
-                            <div class="logo-info">
-                                <h3 class="customer-name">Volkswagen</h3>
-                                <p class="customer-description">Automotive company and the flagship brand of the Volkswagen Group, one of the world's largest car manufacturers by global sales.</p>
-                            </div>
+                        <div class="feature-content">
+                            <h3>ISO 27001 <span class="highlight-blue">Cybersecurity</span></h3>
+                            <p>Implement and maintain robust information security management systems that protect your critical assets.</p>
                         </div>
                     </div>
                     
-                    <div class="slideshow-controls">
-                        <div class="slideshow-dots">
-                            <span class="dot active" data-index="0"></span>
-                            <span class="dot" data-index="1"></span>
-                            <span class="dot" data-index="2"></span>
-                            <span class="dot" data-index="3"></span>
-                            <span class="dot" data-index="4"></span>
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-robot"></i>
                         </div>
-                        <div class="slideshow-arrows">
-                            <button class="arrow prev"><i class="fas fa-chevron-left"></i></button>
-                            <button class="arrow next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="feature-content">
+                            <h3>ISO 42001 <span class="highlight-blue">AI Governance</span></h3>
+                            <p>Navigate the complexities of artificial intelligence with governance frameworks that ensure ethical and compliant AI operations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3><span class="highlight-blue">Management</span> Systems</h3>
+                            <p>Build integrated management systems that streamline security and governance practices into your organizational culture.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="about-preview" id="about" aria-labelledby="mission-heading">
+                <div class="container">
+                    <div class="about-content">
+                        <h2 id="mission-heading">Our <span class="highlight">Mission</span></h2>
+                        <p>At Akeva Technologies, we help organizations navigate the complexities of digital security and artificial intelligence management, enabling them to operate confidently while adhering to the highest standards of governance and risk management.</p>
+                        <a href="about.html" class="btn btn-outline" aria-label="Learn more about our mission">Learn More <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="about-image" aria-hidden="true">
+                        <img src="img/HomepageOurMissionOffice.png" alt="Cybersecurity professionals at work" width="600" height="400" loading="lazy">
+                        <div class="tech-frame"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta" id="cta" aria-labelledby="cta-heading">
+                <div class="container">
+                    <div class="tech-pattern" aria-hidden="true"></div>
+                    <h2 id="cta-heading">Stay Ahead of <span class="highlight-alt">Regulatory Changes</span></h2>
+                    <p>Our services are designed to help you mitigate risks and enhance resilience against cyber threats.</p>
+                    <a href="contact.html" class="btn" aria-label="Contact us today for cybersecurity services">Contact Us Today <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </section>
+
+            <section class="customers" id="customers" aria-labelledby="customers-heading">
+                <div class="container">
+                    <h2 class="section-title" id="customers-heading">Our <span class="highlight">Customers</span></h2>
+                    <p class="customers-intro">Trusted by leading organizations across industries to ensure AI compliance and cybersecurity excellence.</p>
+                    
+                    <div class="logo-slideshow" role="region" aria-label="Customer testimonials slideshow" aria-roledescription="carousel">
+                        <div class="logo-container">
+                            <div class="logo-slide active" role="group" aria-roledescription="slide" aria-label="Customer 1 of 5">
+                                <div class="logo-image">
+                                    <img src="img/AvayaLogo.png" alt="Avaya logo" class="customer-logo" width="220" height="100" loading="lazy">
+                                </div>
+                                <div class="logo-info">
+                                    <h3 class="customer-name">Avaya</h3>
+                                    <p class="customer-description">Multinational technology company providing cloud communications and workstream collaboration services.</p>
+                                </div>
+                            </div>
+                            <div class="logo-slide" role="group" aria-roledescription="slide" aria-label="Customer 2 of 5" aria-hidden="true">
+                                <div class="logo-image">
+                                    <img src="img/CernerLogo.png" alt="Cerner logo" class="customer-logo" width="220" height="100" loading="lazy">
+                                </div>
+                                <div class="logo-info">
+                                    <h3 class="customer-name">Cerner</h3>
+                                    <p class="customer-description">Multinational provider of health information technology and services.</p>
+                                </div>
+                            </div>
+                            <div class="logo-slide" role="group" aria-roledescription="slide" aria-label="Customer 3 of 5" aria-hidden="true">
+                                <div class="logo-image">
+                                    <img src="img/ComputaCenterLogo.png" alt="Computacenter logo" class="customer-logo" width="220" height="100" loading="lazy">
+                                </div>
+                                <div class="logo-info">
+                                    <h3 class="customer-name">Computacenter</h3>
+                                    <p class="customer-description">Computacenter is a leading independent technology and services provider, trusted by large corporate and public sector organisations.</p>
+                                </div>
+                            </div>
+                            <div class="logo-slide" role="group" aria-roledescription="slide" aria-label="Customer 4 of 5" aria-hidden="true">
+                                <div class="logo-image">
+                                    <img src="img/TotalLogo.png" alt="TotalEnergies logo" class="customer-logo" width="220" height="100" loading="lazy">
+                                </div>
+                                <div class="logo-info">
+                                    <h3 class="customer-name">TotalEnergies</h3>
+                                    <p class="customer-description">TotalEnergies is a global integrated energy company that produces and markets energies: oil and biofuels, natural gas and green gases, and renewables.</p>
+                                </div>
+                            </div>
+                            <div class="logo-slide" role="group" aria-roledescription="slide" aria-label="Customer 5 of 5" aria-hidden="true">
+                                <div class="logo-image">
+                                    <img src="img/VWLogo.png" alt="Volkswagen logo" class="customer-logo" width="220" height="100" loading="lazy">
+                                </div>
+                                <div class="logo-info">
+                                    <h3 class="customer-name">Volkswagen</h3>
+                                    <p class="customer-description">Automotive company and the flagship brand of the Volkswagen Group, one of the world's largest car manufacturers by global sales.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slideshow-controls">
+                            <div class="slideshow-dots" role="tablist" aria-label="Select a slide to display">
+                                <span class="dot active" data-index="0" role="tab" aria-selected="true" aria-label="Show slide 1" tabindex="0"></span>
+                                <span class="dot" data-index="1" role="tab" aria-selected="false" aria-label="Show slide 2" tabindex="0"></span>
+                                <span class="dot" data-index="2" role="tab" aria-selected="false" aria-label="Show slide 3" tabindex="0"></span>
+                                <span class="dot" data-index="3" role="tab" aria-selected="false" aria-label="Show slide 4" tabindex="0"></span>
+                                <span class="dot" data-index="4" role="tab" aria-selected="false" aria-label="Show slide 5" tabindex="0"></span>
+                            </div>
+                            <div class="slideshow-arrows">
+                                <button class="arrow prev" aria-label="Previous slide"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                                <button class="arrow next" aria-label="Next slide"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     
-        <footer>
+        <footer role="contentinfo">
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
                         <h3>Akeva Technologies</h3>
                         <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
                         <div class="social-icons">
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
                         </div>
                     </div>
                     <div class="footer-section">
                         <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                        <ul class="contact-list">
+                            <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li><a href="about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
+                            <li><a href="services.html"><i class="fas fa-cogs" aria-hidden="true"></i> Services</a></li>
+                            <li><a href="contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
                         <h3>Contact</h3>
-                        <p><a href="mailto:contact@akeva-technologies.com"><i class="fas fa-envelope"></i> contact@akeva-technologies.com</a></p>
-                        <p><a href="tel:+14164195683"><i class="fas fa-phone"></i> +1 (416) 419-5683</a></p>
-                        <p><a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank"><i class="fas fa-map-marker-alt"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8</a></p>
+                        <address>
+                            <ul class="contact-list">
+                                <li>
+                                    <a href="mailto:contact@akeva-technologies.com" aria-label="Email us">
+                                        <i class="fas fa-envelope" aria-hidden="true"></i> contact@akeva-technologies.com
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+14164195683" aria-label="Call us">
+                                        <i class="fas fa-phone" aria-hidden="true"></i> +1 (416) 419-5683
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank" aria-label="View our location on Google Maps">
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8
+                                    </a>
+                                </li>
+                            </ul>
+                        </address>
                     </div>
                 </div>
                 <div class="footer-bottom">

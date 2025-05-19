@@ -181,6 +181,14 @@
   opacity: 0.1;
   z-index: 0;
 }
+
+.social-icons {
+    justify-content: flex-start;
+  }
+
+.social-icons a {
+    background-color: var(--primary-blue);
+  }
   
 /* Contact Form Styling */
 .contact-form {

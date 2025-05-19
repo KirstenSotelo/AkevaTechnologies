@@ -11,153 +11,167 @@
 </head>
 <body>
     <div id="app">
-        <header>
+        <header role="banner">
             <div class="container">
-                <a href="index.html" class="logo" aria-label="Go to homepage">
+                <a href="index.html" class="logo" aria-label="AKEVA TECHNOLOGIES homepage">
                     <img src="img/AkevaTechnologiesLogo.png" alt="AKEVA TECHNOLOGIES Logo" width="75" height="75">
                 </a>
                 <!-- Mobile menu toggle button -->
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html" class="active">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                <nav aria-label="Primary navigation" id="primary-navigation">
+                    <ul role="menubar">
+                        <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                        <li role="none"><a href="about.html" class="active" role="menuitem" aria-current="page">About</a></li>
+                        <li role="none"><a href="services.html" role="menuitem">Services</a></li>
+                        <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-        <section class="page-header">
-            <div class="container">
-                <h1>About Akeva Technologies</h1>
-            </div>
-        </section>
+        <main id="main-content">
+            <section class="page-header" aria-labelledby="page-title">
+                <div class="container">
+                    <h1 id="page-title">About Akeva Technologies</h1>
+                </div>
+            </section>
 
-        <section class="about-preview">
-            <div class="container">
-                <div class="about-content">
-                    <h2>Our <span class="highlight">Story</span></h2>
-                    <p>Akeva Technologies was founded by a team of cybersecurity and AI governance experts who recognized the growing need for integrated solutions that address both security and compliance challenges in the digital age.</p>
-                    <p>With years of combined experience in information security, risk management, and artificial intelligence, our team has developed a comprehensive approach to helping organizations navigate the increasingly complex landscape of digital security and AI governance.</p>
-                </div>
-                <div class="about-image">
-                    <img src="img/AboutOurStory.png" alt="Akeva Technologies team">
-                    <div class="tech-frame"></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mission-section">
-            <div class="container">
-                <div class="mission-image">
-                    <img src="img/AboutOurMission.jpg" alt="Mission visualization">
-                    <div class="mission-tech-frame"></div>
-                </div>
-                <div class="mission-content">
-                    <h2>Our <span class="highlight">Mission</span></h2>
-                    <p>Our mission is to help organizations navigate the complexities of digital security and artificial intelligence management, enabling them to operate confidently while adhering to the highest standards of governance and risk management.</p>
-                    <p>We believe that effective security and governance practices should be integrated into the organizational culture, not treated as separate functions. By taking this approach, we help our clients stay ahead of regulatory changes, mitigate risks, and enhance their resilience against cyber threats.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="values-section">
-            <div class="container">
-                <h2>Our <span class="highlight">Core Values</span></h2>
-                <div class="values-grid">
-                    <div class="value-box">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Integrity</h3>
-                        <p>We maintain the highest ethical standards in all our interactions and recommendations.</p>
+            <section class="about-preview" aria-labelledby="story-heading">
+                <div class="container">
+                    <div class="about-content">
+                        <h2 id="story-heading">Our <span class="highlight">Story</span></h2>
+                        <p>Akeva Technologies was founded by a team of cybersecurity and AI governance experts who recognized the growing need for integrated solutions that address both security and compliance challenges in the digital age.</p>
+                        <p>With years of combined experience in information security, risk management, and artificial intelligence, our team has developed a comprehensive approach to helping organizations navigate the increasingly complex landscape of digital security and AI governance.</p>
                     </div>
-                    <div class="value-box">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>Innovation</h3>
-                        <p>We continuously seek new and better ways to address security and governance challenges.</p>
-                    </div>
-                    <div class="value-box">
-                        <i class="fas fa-users"></i>
-                        <h3>Collaboration</h3>
-                        <p>We work closely with our clients to develop solutions that meet their specific needs.</p>
-                    </div>
-                    <div class="value-box">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Excellence</h3>
-                        <p>We strive for excellence in everything we do, from technical implementations to client service.</p>
+                    <div class="about-image" aria-hidden="true">
+                        <img src="img/AboutOurStory.png" alt="Akeva Technologies team members collaborating" width="600" height="400">
+                        <div class="tech-frame"></div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="cta">
-            <div class="container">
-                <h2>Ready to Enhance Your Security and Governance?</h2>
-                <p>Contact us today to learn how we can help your organization.</p>
-                <a href="contact.html" class="btn">Get in Touch</a>
-            </div>
-        </section>
-
-        <!--
-        <section class="team-section">
-            <div class="container">
-                <h2 class="section-title">Meet <span class="highlight">Our Founder</span></h2>
-                <div class="team-member" id="founder-card">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Shawn Sales">
-                    <h3>Shawn Sales</h3>
-                    <p>Founder & Energy Advisor</p>
+            <section class="mission-section" aria-labelledby="mission-heading">
+                <div class="container">
+                    <div class="mission-image" aria-hidden="true">
+                        <img src="img/AboutOurMission.jpg" alt="Visual representation of our mission" width="600" height="400">
+                        <div class="mission-tech-frame"></div>
+                    </div>
+                    <div class="mission-content">
+                        <h2 id="mission-heading">Our <span class="highlight">Mission</span></h2>
+                        <p>Our mission is to help organizations navigate the complexities of digital security and artificial intelligence management, enabling them to operate confidently while adhering to the highest standards of governance and risk management.</p>
+                        <p>We believe that effective security and governance practices should be integrated into the organizational culture, not treated as separate functions. By taking this approach, we help our clients stay ahead of regulatory changes, mitigate risks, and enhance their resilience against cyber threats.</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <div id="founderModal" class="modal">
-            <div class="modal-content">
-              <span class="close-btn">&times;</span>
-              <h2>Shawn Sales</h2>
-              <p><strong>Founder & Energy Advisor</strong></p>
-              <p>Shawn Sales has over 15 years of experience in sales management and a strong commitment to sustainability. After transitioning to the sustainable energy sector in 2022, he earned a diploma in Sustainable Energy Technology and became a Registered Energy Advisor.</p>
-            <p>Shawn specializes in solar PV, geo-exchange, wind energy, and HVAC systems, and is skilled in energy evaluations, Net Zero solutions, heat load calculations, and duct design.</p>
-            <p>As a Quality Assurance Specialist and Service Organization Manager, Shawn trains and supports energy advisors, ensuring compliance with energy performance standards. His diverse background in retail and construction, combined with his technical expertise, allows him to provide effective, innovative energy solutions.</p>
-            <p>Shawn is passionate about reducing environmental impact through sustainable energy and continues to expand his knowledge through various certifications in energy efficiency and sustainable technology. At Consider It Energy, his goal is to help homeowners and builders achieve their sustainability goals.</p>
-            </div>
-          </div>
-        -->
-          
-
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>Akeva Technologies</h3>
-                        <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <section class="values-section" aria-labelledby="values-heading">
+                <div class="container">
+                    <h2 id="values-heading">Our <span class="highlight">Core Values</span></h2>
+                    <div class="values-grid" role="list">
+                        <div class="value-box" role="listitem">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                            <h3>Integrity</h3>
+                            <p>We maintain the highest ethical standards in all our interactions and recommendations.</p>
+                        </div>
+                        <div class="value-box" role="listitem">
+                            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                            <h3>Innovation</h3>
+                            <p>We continuously seek new and better ways to address security and governance challenges.</p>
+                        </div>
+                        <div class="value-box" role="listitem">
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                            <h3>Collaboration</h3>
+                            <p>We work closely with our clients to develop solutions that meet their specific needs.</p>
+                        </div>
+                        <div class="value-box" role="listitem">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                            <h3>Excellence</h3>
+                            <p>We strive for excellence in everything we do, from technical implementations to client service.</p>
                         </div>
                     </div>
-                    <div class="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
+                </div>
+            </section>
+
+            <section class="cta" aria-labelledby="cta-heading">
+                <div class="container">
+                    <h2 id="cta-heading">Ready to Enhance Your Security and Governance?</h2>
+                    <p>Contact us today to learn how we can help your organization.</p>
+                    <a href="contact.html" class="btn" aria-label="Get in touch with our team">Get in Touch</a>
+                </div>
+            </section>
+
+            <!--
+                <section class="team-section">
+                    <div class="container">
+                        <h2 class="section-title">Meet <span class="highlight">Our Founder</span></h2>
+                        <div class="team-member" id="founder-card">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="John Doe">
+                            <h3>John Doe</h3>
+                            <p>Founder & Cybersecurity Expert</p>
+                        </div>
                     </div>
-                    <div class="footer-section">
-                        <h3>Contact</h3>
-                        <p><a href="mailto:contact@akeva-technologies.com"><i class="fas fa-envelope"></i> contact@akeva-technologies.com</a></p>
-                        <p><a href="tel:+14164195683"><i class="fas fa-phone"></i> +1 (416) 419-5683</a></p>
-                        <p><a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank"><i class="fas fa-map-marker-alt"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8</a></p>
+                </section>
+
+                <div id="founderModal" class="modal">
+                    <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>John Doe</h2>
+                    <p><strong>Founder & Cybersecurity Expert</strong></p>
+                    <p>Example description for our Founder and CEO</p>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; <span id="currentYear"></span> Akeva Technologies. All rights reserved.</p>
+            -->
+              
+            <footer role="contentinfo">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-section">
+                            <h3>Akeva Technologies</h3>
+                            <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
+                            <div class="social-icons">
+                                <a href="#" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-section">
+                            <h3>Quick Links</h3>
+                            <ul class="contact-list">
+                                <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                                <li><a href="about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
+                                <li><a href="services.html"><i class="fas fa-cogs" aria-hidden="true"></i> Services</a></li>
+                                <li><a href="contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h3>Contact</h3>
+                            <address>
+                                <ul class="contact-list">
+                                    <li>
+                                        <a href="mailto:contact@akeva-technologies.com" aria-label="Email us">
+                                            <i class="fas fa-envelope" aria-hidden="true"></i> contact@akeva-technologies.com
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+14164195683" aria-label="Call us">
+                                            <i class="fas fa-phone" aria-hidden="true"></i> +1 (416) 419-5683
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank" aria-label="View our location on Google Maps">
+                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8
+                                        </a>
+                                    </li>
+                                </ul>
+                            </address>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; <span id="currentYear"></span> Akeva Technologies. All rights reserved.</p>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </main>
     </div>
 
     <script>
@@ -172,7 +186,7 @@
           const founderCard = document.getElementById("founder-card");
           console.log("Founder card element:", founderCard);
           
-          const closeBtn = modal.querySelector(".close-btn");
+          const closeBtn = modal?.querySelector(".close-btn");
           console.log("Close button:", closeBtn);
           
           // Make sure the modal has the correct initial styles
@@ -187,6 +201,10 @@
                 console.log("Founder card clicked");
                 // First set display to block
                 modal.style.display = "block";
+                modal.removeAttribute("hidden"); // Remove hidden attribute for accessibility
+                
+                // Update ARIA attributes
+                founderCard.setAttribute("aria-expanded", "true");
                 
                 // Force a reflow before changing opacity for transition
                 void modal.offsetWidth;
@@ -198,6 +216,14 @@
                 
                 document.body.style.overflow = "hidden"; // Prevent scrolling
               });
+              
+              // Make it keyboard accessible
+              founderCard.addEventListener("keydown", function(e) {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  founderCard.click();
+                }
+              });
             } else {
               console.error("Founder card element not found!");
             }
@@ -208,9 +234,15 @@
                 console.log("Close button clicked");
                 modal.style.opacity = "0";
                 
+                // Update ARIA attributes
+                if (founderCard) {
+                  founderCard.setAttribute("aria-expanded", "false");
+                }
+                
                 // Wait for transition to complete before hiding
                 setTimeout(function() {
                   modal.style.display = "none";
+                  modal.setAttribute("hidden", ""); // Add hidden attribute for accessibility
                   document.body.style.overflow = ""; // Restore scrolling
                 }, 300); // Match this to your CSS transition time
               });
@@ -224,9 +256,15 @@
                 console.log("Clicked outside modal content");
                 modal.style.opacity = "0";
                 
+                // Update ARIA attributes
+                if (founderCard) {
+                  founderCard.setAttribute("aria-expanded", "false");
+                }
+                
                 // Wait for transition to complete before hiding
                 setTimeout(function() {
                   modal.style.display = "none";
+                  modal.setAttribute("hidden", ""); // Add hidden attribute for accessibility
                   document.body.style.overflow = ""; // Restore scrolling
                 }, 300); // Match this to your CSS transition time
               }
@@ -238,9 +276,15 @@
                 console.log("ESC key pressed");
                 modal.style.opacity = "0";
                 
+                // Update ARIA attributes
+                if (founderCard) {
+                  founderCard.setAttribute("aria-expanded", "false");
+                }
+                
                 // Wait for transition to complete before hiding
                 setTimeout(function() {
                   modal.style.display = "none";
+                  modal.setAttribute("hidden", ""); // Add hidden attribute for accessibility
                   document.body.style.overflow = ""; // Restore scrolling
                 }, 300); // Match this to your CSS transition time
               }

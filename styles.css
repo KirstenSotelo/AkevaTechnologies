@@ -825,7 +825,7 @@ nav ul li a.active {
 
   /* Adjust the ::before element position to align with the h2 text */
   .about-content::before {
-    display:none;
+    display: none;
   }
 }
 
@@ -1107,7 +1107,7 @@ nav ul li a.active {
 }
 
 .dot.active {
-  background: var(--dark-gray);
+  background: #a9a9a9;
   transform: scale(1.2);
 }
 
@@ -1304,6 +1304,7 @@ footer::before {
 }
 
 .footer-section h3 {
+  text-align: left;
   color: var(--white);
   font-size: 1.3rem;
   margin-bottom: 20px;
@@ -1478,6 +1479,10 @@ footer::before {
     text-align: left; /* Keep text left-aligned on medium screens */
   }
 
+  .footer-section h3 {
+    text-align: center;
+  }
+
   .footer-section h3::after {
     left: 0;
     transform: none;
@@ -1493,6 +1498,8 @@ footer::before {
   .footer-content {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    justify-content: center;
+    margin: 0 auto;
   }
 
   .footer-section {
@@ -1517,15 +1524,24 @@ footer::before {
   }
 
   .footer-content {
-    display: flex;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 100%;
   }
 
   .footer-section {
-    padding: 0 10px 20px;
+    padding: 0 5px 20px;
     margin-bottom: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .footer-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
   }
 
   .footer-section:last-child {
@@ -1535,12 +1551,13 @@ footer::before {
 
   /* Make contact information more readable on mobile */
   .footer-section a {
-    display: inline-flex; /* Change from flex to inline-flex */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     margin-bottom: 12px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    text-align: center;
   }
 
   .footer-section a i {
@@ -1551,14 +1568,15 @@ footer::before {
   /* Improve quick links display on mobile */
   .footer-section ul {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     margin-top: 10px;
   }
 
   .footer-section ul li {
     margin-bottom: 0;
+    text-align: center;
   }
 
   /* Adjust footer bottom spacing */
@@ -1574,17 +1592,22 @@ footer::before {
 
 /* Add styles for extra small screens */
 @media (max-width: 375px) {
+  .footer-content {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
   .footer-section h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .footer-section a,
   .footer-section p {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 
   .footer-section ul li a {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 
   .social-icons {
@@ -1592,8 +1615,8 @@ footer::before {
   }
 
   .social-icons a {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -1991,7 +2014,7 @@ footer::before {
 
   /* Adjust the about-content::before position on mobile */
   .about-content::before {
-    isplay:none;
+    display: none;
   }
 }
 

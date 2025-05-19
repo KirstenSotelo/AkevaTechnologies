@@ -11,217 +11,265 @@
 </head>
 <body>
     <div id="app">
-        <header>
+        <a href="#main-content" class="skip-link sr-only sr-only-focusable">Skip to main content</a>
+        
+        <header role="banner">
             <div class="container">
-                <a href="index.html" class="logo" aria-label="Go to homepage">
+                <a href="index.html" class="logo" aria-label="AKEVA TECHNOLOGIES homepage">
                     <img src="img/AkevaTechnologiesLogo.png" alt="AKEVA TECHNOLOGIES Logo" width="75" height="75">
                 </a>
                 <!-- Mobile menu toggle button -->
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" @click="toggleMobileMenu">
-                    <i class="fas" :class="{'fa-bars': !mobileMenuOpen, 'fa-times': mobileMenuOpen}"></i>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="{{mobileMenuOpen ? 'true' : 'false'}}" aria-controls="primary-navigation" @click="toggleMobileMenu">
+                    <i class="fas" :class="{'fa-bars': !mobileMenuOpen, 'fa-times': mobileMenuOpen}" aria-hidden="true"></i>
                 </button>
-                <nav :class="{'active': mobileMenuOpen}">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html" class="active">Contact</a></li>
+                <nav :class="{'active': mobileMenuOpen}" aria-label="Primary navigation" id="primary-navigation">
+                    <ul role="menubar">
+                        <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                        <li role="none"><a href="about.html" role="menuitem">About</a></li>
+                        <li role="none"><a href="services.html" role="menuitem">Services</a></li>
+                        <li role="none"><a href="contact.html" class="active" role="menuitem" aria-current="page">Contact</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-        <section class="page-header">
-            <div class="container">
-                <h1>Contact Us</h1>
-            </div>
-        </section>
-
-        <section class="contact-section">
-            <div class="container contact-container">
-                <div class="contact-info">
-                    <h2><span class="highlight">Connect</span> With Us</h2>
-                    <p>We're here to answer any questions you may have about our services. Reach out to us and we'll respond as soon as we can.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-info-item">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-text">
-                                <h3>Email</h3>
-                                <p><a href="mailto:contact@akeva-technologies.com">contact@akeva-technologies.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                            <div class="contact-text">
-                                <h3>Phone</h3>
-                                <p><a href="tel:+14164195683">+1 (416) 419-5683</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="contact-text">
-                                <h3>Address</h3>
-                                <p>435 St. Laurent Blvd Suite 202,<br> OTTAWA, ON K1K2Z8</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="social-icons">
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                    </div>
-                    <div class="contact-decoration"></div>
+        <main id="main-content">
+            <section class="page-header" aria-labelledby="page-title">
+                <div class="container">
+                    <h1 id="page-title">Contact Us</h1>
                 </div>
-                
-                <div class="contact-form">
-                    <h2>Send Us a <span class="highlight">Message</span></h2>
-                    <form @submit.prevent="submitForm">
-                        <div class="form-grid">
-                            <div class="input-group">
-                                <label for="name">Full Name</label>
-                                <input 
-                                    type="text" 
-                                    id="name" 
-                                    v-model="formData.name" 
-                                    :class="{ 'error-input': errors.name && touched.name }"
-                                    @blur="touch('name')"
-                                    required
-                                >
-                                <div class="error-message" v-if="errors.name && touched.name">
-                                    {{ errors.name }}
+            </section>
+
+            <section class="contact-section" aria-labelledby="contact-heading">
+                <div class="container contact-container">
+                    <div class="contact-info">
+                        <h2 id="contact-heading"><span class="highlight">Connect</span> With Us</h2>
+                        <p>We're here to answer any questions you may have about our services. Reach out to us and we'll respond as soon as we can.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-info-item">
+                                <div class="contact-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+                                <div class="contact-text">
+                                    <h3 id="email-heading">Email</h3>
+                                    <p><a href="mailto:contact@akeva-technologies.com" aria-labelledby="email-heading">contact@akeva-technologies.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
+                                <div class="contact-text">
+                                    <h3 id="phone-heading">Phone</h3>
+                                    <p><a href="tel:+14164195683" aria-labelledby="phone-heading">+1 (416) 419-5683</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="contact-text">
+                                    <h3 id="address-heading">Address</h3>
+                                    <address aria-labelledby="address-heading">
+                                        435 St. Laurent Blvd Suite 202,<br> OTTAWA, ON K1K2Z8
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-icons" aria-label="Social media links">
+                            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>    
+                        </div>
+                        <div class="contact-decoration" aria-hidden="true"></div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h2 id="form-heading">Send Us a <span class="highlight">Message</span></h2>
+                        <form @submit.prevent="submitForm" aria-labelledby="form-heading" novalidate>
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="name" id="name-label">Full Name</label>
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        v-model="formData.name" 
+                                        :class="{ 'error-input': errors.name && touched.name }"
+                                        @blur="touch('name')"
+                                        aria-required="true"
+                                        aria-invalid="{{errors.name && touched.name ? 'true' : 'false'}}"
+                                        aria-describedby="{{errors.name && touched.name ? 'name-error' : ''}}"
+                                        required
+                                    >
+                                    <div class="error-message" v-if="errors.name && touched.name" id="name-error" role="alert">
+                                        {{ errors.name }}
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="email" id="email-label">Email Address</label>
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        v-model="formData.email" 
+                                        :class="{ 'error-input': errors.email && touched.email }"
+                                        @blur="touch('email')"
+                                        aria-required="true"
+                                        aria-invalid="{{errors.email && touched.email ? 'true' : 'false'}}"
+                                        aria-describedby="{{errors.email && touched.email ? 'email-error' : ''}}"
+                                        required
+                                    >
+                                    <div class="error-message" v-if="errors.email && touched.email" id="email-error" role="alert">
+                                        {{ errors.email }}
+                                    </div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="phone" id="phone-label">Phone Number (Optional)</label>
+                                    <input 
+                                        type="tel" 
+                                        id="phone" 
+                                        v-model="formData.phone"
+                                        aria-required="false"
+                                    >
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="company" id="company-label">Company Name (Optional)</label>
+                                    <input 
+                                        type="text" 
+                                        id="company" 
+                                        v-model="formData.company"
+                                        aria-required="false"
+                                    >
                                 </div>
                             </div>
                             
-                            <div class="input-group">
-                                <label for="email">Email Address</label>
+                            <div class="input-group full-width">
+                                <label for="subject" id="subject-label">Subject</label>
                                 <input 
-                                    type="email" 
-                                    id="email" 
-                                    v-model="formData.email" 
-                                    :class="{ 'error-input': errors.email && touched.email }"
-                                    @blur="touch('email')"
+                                    type="text" 
+                                    id="subject" 
+                                    v-model="formData.subject" 
+                                    :class="{ 'error-input': errors.subject && touched.subject }"
+                                    @blur="touch('subject')"
+                                    aria-required="true"
+                                    aria-invalid="{{errors.subject && touched.subject ? 'true' : 'false'}}"
+                                    aria-describedby="{{errors.subject && touched.subject ? 'subject-error' : ''}}"
                                     required
                                 >
-                                <div class="error-message" v-if="errors.email && touched.email">
-                                    {{ errors.email }}
+                                <div class="error-message" v-if="errors.subject && touched.subject" id="subject-error" role="alert">
+                                    {{ errors.subject }}
                                 </div>
                             </div>
                             
-                            <div class="input-group">
-                                <label for="phone">Phone Number (Optional)</label>
-                                <input 
-                                    type="tel" 
-                                    id="phone" 
-                                    v-model="formData.phone"
-                                >
-                            </div>
-                            
-                            <div class="input-group">
-                                <label for="company">Company Name (Optional)</label>
-                                <input 
-                                    type="text" 
-                                    id="company" 
-                                    v-model="formData.company"
-                                >
-                            </div>
-                        </div>
-                        
-                        <div class="input-group full-width">
-                            <label for="subject">Subject</label>
-                            <input 
-                                type="text" 
-                                id="subject" 
-                                v-model="formData.subject" 
-                                :class="{ 'error-input': errors.subject && touched.subject }"
-                                @blur="touch('subject')"
-                                required
-                            >
-                            <div class="error-message" v-if="errors.subject && touched.subject">
-                                {{ errors.subject }}
-                            </div>
-                        </div>
-                        
-                        <div class="input-group full-width">
-                            <label for="message">Message</label>
-                            <textarea 
-                                id="message" 
-                                rows="5" 
-                                v-model="formData.message" 
-                                :class="{ 'error-input': errors.message && touched.message }"
-                                @blur="touch('message')"
-                                required
-                            ></textarea>
-                            <div class="error-message" v-if="errors.message && touched.message">
-                                {{ errors.message }}
-                            </div>
-                        </div>
-                        
-                        <div class="input-group checkbox-group full-width">
-                            <label class="checkbox-label">
-                                <input 
-                                    type="checkbox" 
-                                    v-model="formData.consent" 
-                                    :class="{ 'error-input': errors.consent && touched.consent }"
-                                    @blur="touch('consent')"
+                            <div class="input-group full-width">
+                                <label for="message" id="message-label">Message</label>
+                                <textarea 
+                                    id="message" 
+                                    rows="5" 
+                                    v-model="formData.message" 
+                                    :class="{ 'error-input': errors.message && touched.message }"
+                                    @blur="touch('message')"
+                                    aria-required="true"
+                                    aria-invalid="{{errors.message && touched.message ? 'true' : 'false'}}"
+                                    aria-describedby="{{errors.message && touched.message ? 'message-error' : ''}}"
                                     required
-                                >
-                                <span>I consent to Akeva Technologies collecting and storing my data for the purpose of responding to my inquiry.</span>
-                            </label>
-                            <div class="error-message consent-error" v-if="errors.consent && touched.consent">
-                                {{ errors.consent }}
+                                ></textarea>
+                                <div class="error-message" v-if="errors.message && touched.message" id="message-error" role="alert">
+                                    {{ errors.message }}
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="form-footer">
-                            <button type="submit" class="btn" :disabled="!isFormValid">Send Message</button>
                             
-                            <div class="form-message" v-if="formSubmitted">
-                                <p :class="{ 'success': formSuccess, 'error': !formSuccess }">
-                                    {{ formMessage }}
-                                </p>
+                            <div class="input-group checkbox-group full-width">
+                                <label class="checkbox-label" for="consent" id="consent-label">
+                                    <input 
+                                        type="checkbox" 
+                                        id="consent"
+                                        v-model="formData.consent" 
+                                        :class="{ 'error-input': errors.consent && touched.consent }"
+                                        @blur="touch('consent')"
+                                        aria-required="true"
+                                        aria-invalid="{{errors.consent && touched.consent ? 'true' : 'false'}}"
+                                        aria-describedby="{{errors.consent && touched.consent ? 'consent-error' : ''}}"
+                                        required
+                                    >
+                                    <span>I consent to Akeva Technologies collecting and storing my data for the purpose of responding to my inquiry.</span>
+                                </label>
+                                <div class="error-message consent-error" v-if="errors.consent && touched.consent" id="consent-error" role="alert">
+                                    {{ errors.consent }}
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            
+                            <div class="form-footer">
+                                <button type="submit" class="btn"  :class="{ 'btn-disabled': !isFormValid }" :aria-disabled="!isFormValid ? 'true' : 'false'" aria-label="Send message" @click="isFormValid ? submitForm() : showFormErrors()">Send Message</button>
+                                
+                                <div class="form-message" v-if="formSubmitted" role="status" aria-live="polite">
+                                    <p :class="{ 'success': formSuccess, 'error': !formSuccess }">
+                                        {{ formMessage }}
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="map-section">
-            <div class="container">
-                <h2 class="section-title">Visit Our <span class="highlight">Office</span></h2>
-                <div class="map-container">
-                    <!-- Google Maps iframe -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.2839757750074!2d-75.65650462346277!3d45.43376573621425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0517e1e94e7d%3A0x4b5b7d43fd6bb0d0!2s435%20St%20Laurent%20Blvd%20%23202%2C%20Ottawa%2C%20ON%20K1K%202Z8%2C%20Canada!5e0!3m2!1sen!2sus!4v1715090400000!5m2!1sen!2sus" width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <section class="map-section" aria-labelledby="map-heading">
+                <div class="container">
+                    <h2 class="section-title" id="map-heading">Visit Our <span class="highlight">Office</span></h2>
+                    <div class="map-container">
+                        <!-- Google Maps iframe -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.2839757750074!2d-75.65650462346277!3d45.43376573621425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0517e1e94e7d%3A0x4b5b7d43fd6bb0d0!2s435%20St%20Laurent%20Blvd%20%23202%2C%20Ottawa%2C%20ON%20K1K%202Z8%2C%20Canada!5e0!3m2!1sen!2sus!4v1715090400000!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0; border-radius: 8px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Google Maps showing Akeva Technologies office location"
+                            aria-label="Map showing our office location at 435 St. Laurent Blvd Suite 202, Ottawa, ON"
+                        ></iframe>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
 
-        <footer>
+        <footer role="contentinfo">
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
                         <h3>Akeva Technologies</h3>
                         <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
                         <div class="social-icons">
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
                         </div>
                     </div>
                     <div class="footer-section">
                         <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                        <ul class="contact-list">
+                            <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li><a href="about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
+                            <li><a href="services.html"><i class="fas fa-cogs" aria-hidden="true"></i> Services</a></li>
+                            <li><a href="contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
                         <h3>Contact</h3>
-                        <p><a href="mailto:contact@akeva-technologies.com"><i class="fas fa-envelope"></i> contact@akeva-technologies.com</a></p>
-                        <p><a href="tel:+14164195683"><i class="fas fa-phone"></i> +1 (416) 419-5683</a></p>
-                        <p><a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank"><i class="fas fa-map-marker-alt"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8</a></p>
+                        <address>
+                            <ul class="contact-list">
+                                <li>
+                                    <a href="mailto:contact@akeva-technologies.com" aria-label="Email us">
+                                        <i class="fas fa-envelope" aria-hidden="true"></i> contact@akeva-technologies.com
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+14164195683" aria-label="Call us">
+                                        <i class="fas fa-phone" aria-hidden="true"></i> +1 (416) 419-5683
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank" aria-label="View our location on Google Maps">
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8
+                                    </a>
+                                </li>
+                            </ul>
+                        </address>
                     </div>
                 </div>
                 <div class="footer-bottom">
@@ -328,6 +376,14 @@
                             touched[key] = false;
                         });
                         
+                        // Focus on the success message for screen readers
+                        setTimeout(() => {
+                            const statusElement = document.querySelector('[role="status"]');
+                            if (statusElement) {
+                                statusElement.focus();
+                            }
+                        }, 100);
+                        
                         // Hide success message after 5 seconds
                         setTimeout(() => {
                             formSubmitted.value = false;
@@ -336,6 +392,14 @@
                         formSubmitted.value = true;
                         formSuccess.value = false;
                         formMessage.value = 'Please fill out all required fields correctly.';
+                        
+                        // Focus on the first error for screen readers
+                        setTimeout(() => {
+                            const firstErrorField = document.querySelector('.error-input');
+                            if (firstErrorField) {
+                                firstErrorField.focus();
+                            }
+                        }, 100);
                         
                         // Hide error message after 5 seconds
                         setTimeout(() => {
@@ -359,6 +423,15 @@
                         document.body.classList.remove('menu-open');
                     }
                 });
+                
+                // Handle keyboard navigation for accessibility
+                const handleKeyDown = (event) => {
+                    if (event.key === 'Escape' && mobileMenuOpen.value) {
+                        toggleMobileMenu();
+                    }
+                };
+                
+                window.addEventListener('keydown', handleKeyDown);
                 
                 return {
                     currentYear,
@@ -390,6 +463,23 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        const showFormErrors = () => {
+            // Touch all fields to show validation errors
+            Object.keys(touched).forEach(field => {
+                touched[field] = true;
+            });
+            
+            // Show a message about fixing errors
+            formSubmitted.value = true;
+            formSuccess.value = false;
+            formMessage.value = 'Please fill out all required fields correctly.';
+            
+            // Hide error message after 5 seconds
+            setTimeout(() => {
+                formSubmitted.value = false;
+            }, 5000);
+            };
     </script>
 
 <script src="script.js" defer></script>
