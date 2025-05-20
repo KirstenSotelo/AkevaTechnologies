@@ -1,472 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="akevaApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Akeva Technologies</title>
+    <title>Services | Akeva Technologies</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="services.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <div id="app">
-        <a href="#main-content" class="skip-link sr-only sr-only-focusable">Skip to main content</a>
-        
-        <header role="banner">
+    <header role="banner">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="AKEVA TECHNOLOGIES homepage">
+                <img src="img/AkevaTechnologiesLogo.png" alt="AKEVA TECHNOLOGIES Logo" width="75" height="75">
+            </a>
+            <!-- Mobile menu toggle button -->
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+            <nav aria-label="Primary navigation" id="primary-navigation">
+                <ul role="menubar">
+                    <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                    <li role="none"><a href="about.html" role="menuitem">About</a></li>
+                    <li role="none"><a href="services.html" class="active" role="menuitem" aria-current="page">Services</a></li>
+                    <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-header" aria-labelledby="page-title">
             <div class="container">
-                <a href="index.html" class="logo" aria-label="AKEVA TECHNOLOGIES homepage">
-                    <img src="img/AkevaTechnologiesLogo.png" alt="AKEVA TECHNOLOGIES Logo" width="75" height="75">
-                </a>
-                <!-- Mobile menu toggle button -->
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="{{mobileMenuOpen ? 'true' : 'false'}}" aria-controls="primary-navigation" @click="toggleMobileMenu">
-                    <i class="fas" :class="{'fa-bars': !mobileMenuOpen, 'fa-times': mobileMenuOpen}" aria-hidden="true"></i>
-                </button>
-                <nav :class="{'active': mobileMenuOpen}" aria-label="Primary navigation" id="primary-navigation">
-                    <ul role="menubar">
-                        <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-                        <li role="none"><a href="about.html" role="menuitem">About</a></li>
-                        <li role="none"><a href="services.html" role="menuitem">Services</a></li>
-                        <li role="none"><a href="contact.html" class="active" role="menuitem" aria-current="page">Contact</a></li>
-                    </ul>
-                </nav>
+                <h1 id="page-title">Our Services</h1>
             </div>
-        </header>
+        </section>
 
-        <main id="main-content">
-            <section class="page-header" aria-labelledby="page-title">
-                <div class="container">
-                    <h1 id="page-title">Contact Us</h1>
-                </div>
-            </section>
-
-            <section class="contact-section" aria-labelledby="contact-heading">
-                <div class="container contact-container">
-                    <div class="contact-info">
-                        <h2 id="contact-heading"><span class="highlight">Connect</span> With Us</h2>
-                        <p>We're here to answer any questions you may have about our services. Reach out to us and we'll respond as soon as we can.</p>
-                        
-                        <div class="contact-details">
-                            <div class="contact-info-item">
-                                <div class="contact-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
-                                <div class="contact-text">
-                                    <h3 id="email-heading">Email</h3>
-                                    <p><a href="mailto:contact@akeva-technologies.com" aria-labelledby="email-heading">contact@akeva-technologies.com</a></p>
-                                </div>
-                            </div>
-                            <div class="contact-info-item">
-                                <div class="contact-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
-                                <div class="contact-text">
-                                    <h3 id="phone-heading">Phone</h3>
-                                    <p><a href="tel:+14164195683" aria-labelledby="phone-heading">+1 (416) 419-5683</a></p>
-                                </div>
-                            </div>
-                            <div class="contact-info-item">
-                                <div class="contact-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
-                                <div class="contact-text">
-                                    <h3 id="address-heading">Address</h3>
-                                    <address aria-labelledby="address-heading">
-                                        435 St. Laurent Blvd Suite 202,<br> OTTAWA, ON K1K2Z8
-                                    </address>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="social-icons" aria-label="Social media links">
-                            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-                            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="contact-decoration" aria-hidden="true"></div>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <h2 id="form-heading">Send Us a <span class="highlight">Message</span></h2>
-                        <form @submit.prevent="submitForm" aria-labelledby="form-heading" novalidate>
-                            <div class="form-grid">
-                                <div class="input-group">
-                                    <label for="name" id="name-label">Full Name</label>
-                                    <input 
-                                        type="text" 
-                                        id="name" 
-                                        v-model="formData.name" 
-                                        :class="{ 'error-input': errors.name && touched.name }"
-                                        @blur="touch('name')"
-                                        aria-required="true"
-                                        aria-invalid="{{errors.name && touched.name ? 'true' : 'false'}}"
-                                        aria-describedby="{{errors.name && touched.name ? 'name-error' : ''}}"
-                                        required
-                                    >
-                                    <div class="error-message" v-if="errors.name && touched.name" id="name-error" role="alert">
-                                        {{ errors.name }}
-                                    </div>
-                                </div>
-                                
-                                <div class="input-group">
-                                    <label for="email" id="email-label">Email Address</label>
-                                    <input 
-                                        type="email" 
-                                        id="email" 
-                                        v-model="formData.email" 
-                                        :class="{ 'error-input': errors.email && touched.email }"
-                                        @blur="touch('email')"
-                                        aria-required="true"
-                                        aria-invalid="{{errors.email && touched.email ? 'true' : 'false'}}"
-                                        aria-describedby="{{errors.email && touched.email ? 'email-error' : ''}}"
-                                        required
-                                    >
-                                    <div class="error-message" v-if="errors.email && touched.email" id="email-error" role="alert">
-                                        {{ errors.email }}
-                                    </div>
-                                </div>
-                                
-                                <div class="input-group">
-                                    <label for="phone" id="phone-label">Phone Number (Optional)</label>
-                                    <input 
-                                        type="tel" 
-                                        id="phone" 
-                                        v-model="formData.phone"
-                                        aria-required="false"
-                                    >
-                                </div>
-                                
-                                <div class="input-group">
-                                    <label for="company" id="company-label">Company Name (Optional)</label>
-                                    <input 
-                                        type="text" 
-                                        id="company" 
-                                        v-model="formData.company"
-                                        aria-required="false"
-                                    >
-                                </div>
-                            </div>
-                            
-                            <div class="input-group full-width">
-                                <label for="subject" id="subject-label">Subject</label>
-                                <input 
-                                    type="text" 
-                                    id="subject" 
-                                    v-model="formData.subject" 
-                                    :class="{ 'error-input': errors.subject && touched.subject }"
-                                    @blur="touch('subject')"
-                                    aria-required="true"
-                                    aria-invalid="{{errors.subject && touched.subject ? 'true' : 'false'}}"
-                                    aria-describedby="{{errors.subject && touched.subject ? 'subject-error' : ''}}"
-                                    required
-                                >
-                                <div class="error-message" v-if="errors.subject && touched.subject" id="subject-error" role="alert">
-                                    {{ errors.subject }}
-                                </div>
-                            </div>
-                            
-                            <div class="input-group full-width">
-                                <label for="message" id="message-label">Message</label>
-                                <textarea 
-                                    id="message" 
-                                    rows="5" 
-                                    v-model="formData.message" 
-                                    :class="{ 'error-input': errors.message && touched.message }"
-                                    @blur="touch('message')"
-                                    aria-required="true"
-                                    aria-invalid="{{errors.message && touched.message ? 'true' : 'false'}}"
-                                    aria-describedby="{{errors.message && touched.message ? 'message-error' : ''}}"
-                                    required
-                                ></textarea>
-                                <div class="error-message" v-if="errors.message && touched.message" id="message-error" role="alert">
-                                    {{ errors.message }}
-                                </div>
-                            </div>
-                            
-                            <div class="input-group checkbox-group full-width">
-                                <label class="checkbox-label" for="consent" id="consent-label">
-                                    <input 
-                                        type="checkbox" 
-                                        id="consent"
-                                        v-model="formData.consent" 
-                                        :class="{ 'error-input': errors.consent && touched.consent }"
-                                        @blur="touch('consent')"
-                                        aria-required="true"
-                                        aria-invalid="{{errors.consent && touched.consent ? 'true' : 'false'}}"
-                                        aria-describedby="{{errors.consent && touched.consent ? 'consent-error' : ''}}"
-                                        required
-                                    >
-                                    <span>I consent to Akeva Technologies collecting and storing my data for the purpose of responding to my inquiry.</span>
-                                </label>
-                                <div class="error-message consent-error" v-if="errors.consent && touched.consent" id="consent-error" role="alert">
-                                    {{ errors.consent }}
-                                </div>
-                            </div>
-                            
-                            <div class="form-footer">
-                                <button type="submit" class="btn" :disabled="!isFormValid" aria-label="Send message">Send Message</button>
-                                
-                                <div class="form-message" v-if="formSubmitted" role="status" aria-live="polite">
-                                    <p :class="{ 'success': formSuccess, 'error': !formSuccess }">
-                                        {{ formMessage }}
-                                    </p>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-
-            <section class="map-section" aria-labelledby="map-heading">
-                <div class="container">
-                    <h2 class="section-title" id="map-heading">Visit Our <span class="highlight">Office</span></h2>
-                    <div class="map-container">
-                        <!-- Google Maps iframe -->
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.2839757750074!2d-75.65650462346277!3d45.43376573621425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0517e1e94e7d%3A0x4b5b7d43fd6bb0d0!2s435%20St%20Laurent%20Blvd%20%23202%2C%20Ottawa%2C%20ON%20K1K%202Z8%2C%20Canada!5e0!3m2!1sen!2sus!4v1715090400000!5m2!1sen!2sus" 
-                            width="100%" 
-                            height="400" 
-                            style="border:0; border-radius: 8px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Google Maps showing Akeva Technologies office location"
-                            aria-label="Map showing our office location at 435 St. Laurent Blvd Suite 202, Ottawa, ON"
-                        ></iframe>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer role="contentinfo">
+        <section class="services-intro">
             <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>Akeva Technologies</h3>
-                        <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
-                        <div class="social-icons">
-                            <a href="#" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                <p>Akeva Technologies provides comprehensive cybersecurity and AI governance services, specializing in ensuring compliance with industry frameworks and regulations. Our services are designed to streamline the integration of security and governance practices into your organizational culture.</p>
+            </div>
+        </section>
+
+        <section class="service-category" aria-labelledby="cybersecurity-heading">
+            <div class="container">
+                <div class="service-content">
+                    <div class="service-header">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        <h2 id="cybersecurity-heading">ISO 27001 <span class="highlight">Cybersecurity Services</span></h2>
+                    </div>
+                    <div class="services-grid" role="list">
+                        <div class="service-box" role="listitem">
+                            <h3>Gap Analysis & Readiness Assessment</h3>
+                            <p>Evaluate your current security posture against ISO 27001 requirements to identify gaps and develop a roadmap for compliance.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>ISMS Implementation</h3>
+                            <p>Design and implement an Information Security Management System tailored to your organization's specific needs and risk profile.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>Risk Assessment & Treatment</h3>
+                            <p>Identify, analyze, and develop treatment plans for information security risks in accordance with ISO 27001 requirements.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>Documentation Development</h3>
+                            <p>Create comprehensive policies, procedures, and controls documentation required for ISO 27001 certification.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>Internal Auditing</h3>
+                            <p>Conduct thorough internal audits to ensure your ISMS meets ISO 27001 requirements and identify areas for improvement.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>Certification Support</h3>
+                            <p>Guide your organization through the certification process, including preparation for external audits and addressing findings.</p>
                         </div>
                     </div>
-                    <div class="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul class="contact-list">
-                            <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
-                            <li><a href="about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
-                            <li><a href="services.html"><i class="fas fa-cogs" aria-hidden="true"></i> Services</a></li>
-                            <li><a href="contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
-                        </ul>
+                </div>
+                <div class="service-image" aria-hidden="true">
+                    <img src="img/ServicesCybersecurityServices.png" alt="Visual representation of ISO 27001 Cybersecurity Services">
+                    <div class="service-tech-frame"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-category" aria-labelledby="ai-governance-heading">
+            <div class="container">
+                <div class="service-content">
+                    <div class="service-header">
+                        <i class="fas fa-robot" aria-hidden="true"></i>
+                        <h2 id="ai-governance-heading">ISO 42001 <span class="highlight">AI Governance Services</span></h2>
                     </div>
-                    <div class="footer-section">
-                        <h3>Contact</h3>
-                        <address>
+                    <div class="services-grid" role="list">
+                        <div class="service-box" role="listitem">
+                            <h3>AI Risk Assessment</h3>
+                            <p>Identify and evaluate risks associated with your AI systems, including ethical, legal, and operational considerations.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>AI Management System Implementation</h3>
+                            <p>Design and implement an AI Management System that aligns with ISO 42001 requirements and your organizational objectives.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>AI Ethics Framework Development</h3>
+                            <p>Create comprehensive frameworks for ensuring ethical AI development, deployment, and operation within your organization.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>AI Compliance Monitoring</h3>
+                            <p>Establish processes for ongoing monitoring of AI systems to ensure continued compliance with regulatory requirements.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>AI Governance Training</h3>
+                            <p>Provide training for staff at all levels on AI governance principles, practices, and responsibilities.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>AI Certification Readiness</h3>
+                            <p>Prepare your organization for ISO 42001 certification through gap analysis, documentation development, and audit preparation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-image" aria-hidden="true">
+                    <img src="img/ServicesAIGovernance.png" alt="Visual representation of AI Governance Services">
+                    <div class="service-tech-frame"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-category" aria-labelledby="management-systems-heading">
+            <div class="container">
+                <div class="service-content">
+                    <div class="service-header">
+                        <i class="fas fa-tasks" aria-hidden="true"></i>
+                        <h2 id="management-systems-heading"><span class="highlight">Management Systems</span> Integration</h2>
+                    </div>
+                    <div class="services-grid" role="list">
+                        <div class="service-box" role="listitem">
+                            <h3>Integrated Management System Design</h3>
+                            <p>Design comprehensive management systems that integrate cybersecurity, AI governance, and other compliance requirements.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>Process Optimization</h3>
+                            <p>Streamline processes to eliminate redundancies and enhance efficiency across multiple management systems.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>Unified Documentation Framework</h3>
+                            <p>Develop a cohesive documentation framework that addresses requirements across multiple standards and regulations.</p>
+                        </div>
+                        <div class="service-box" role="listitem">
+                            <h3>Integrated Audit Programs</h3>
+                            <p>Establish audit programs that efficiently assess compliance with multiple standards simultaneously.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-image" aria-hidden="true">
+                    <img src="img/ServicesManagementSystems.png" alt="Visual representation of Management Systems Integration">
+                    <div class="service-tech-frame"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta" aria-labelledby="cta-heading">
+            <div class="container">
+                <h2 id="cta-heading">Ready to Enhance Your Security and Governance?</h2>
+                <p>Contact us today to learn how we can help your organization.</p>
+                <a href="contact.html" class="btn" aria-label="Get in touch with our team">Get in Touch</a>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-section">
+                            <h3>Akeva Technologies</h3>
+                            <p>Empowering organizations with comprehensive cybersecurity and AI governance solutions.</p>
+                            <div class="social-icons">
+                                <a href="#" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-section">
+                            <h3>Quick Links</h3>
                             <ul class="contact-list">
-                                <li>
-                                    <a href="mailto:contact@akeva-technologies.com" aria-label="Email us">
-                                        <i class="fas fa-envelope" aria-hidden="true"></i> contact@akeva-technologies.com
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="tel:+14164195683" aria-label="Call us">
-                                        <i class="fas fa-phone" aria-hidden="true"></i> +1 (416) 419-5683
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank" aria-label="View our location on Google Maps">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8
-                                    </a>
-                                </li>
+                                <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                                <li><a href="about.html"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
+                                <li><a href="services.html"><i class="fas fa-cogs" aria-hidden="true"></i> Services</a></li>
+                                <li><a href="contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
                             </ul>
-                        </address>
+                        </div>
+                        <div class="footer-section">
+                            <h3>Contact</h3>
+                            <address>
+                                <ul class="contact-list">
+                                    <li>
+                                        <a href="mailto:contact@akeva-technologies.com" aria-label="Email us">
+                                            <i class="fas fa-envelope" aria-hidden="true"></i> contact@akeva-technologies.com
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+14164195683" aria-label="Call us">
+                                            <i class="fas fa-phone" aria-hidden="true"></i> +1 (416) 419-5683
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://maps.app.goo.gl/W1SHXMqjcSrjs74H8" target="_blank" aria-label="View our location on Google Maps">
+                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i> 435 St. Laurent Blvd Suite 202, OTTAWA, ON K1K2Z8
+                                        </a>
+                                    </li>
+                                </ul>
+                            </address>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; <span id="currentYear"></span> Akeva Technologies. All rights reserved.</p>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; <span id="currentYear"></span> Akeva Technologies. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
-    </div>
+            </footer>
 
     <script>
-        const { createApp, ref, computed, reactive } = Vue;
-        
-        createApp({
-            setup() {
-                const currentYear = ref(new Date().getFullYear());
-                const mobileMenuOpen = ref(false);
-                
-                const toggleMobileMenu = () => {
-                    mobileMenuOpen.value = !mobileMenuOpen.value;
-                    document.body.classList.toggle('menu-open', mobileMenuOpen.value);
-                };
-                
-                const formData = reactive({
-                    name: '',
-                    email: '',
-                    phone: '',
-                    company: '',
-                    subject: '',
-                    message: '',
-                    consent: false
-                });
-                
-                const touched = reactive({
-                    name: false,
-                    email: false,
-                    subject: false,
-                    message: false,
-                    consent: false
-                });
-                
-                const touch = (field) => {
-                    touched[field] = true;
-                };
-                
-                const errors = computed(() => {
-                    const result = {};
-                    
-                    if (!formData.name) {
-                        result.name = 'Name is required.';
-                    }
-                    
-                    if (!formData.email) {
-                        result.email = 'Email is required.';
-                    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-                        result.email = 'Please enter a valid email address.';
-                    }
-                    
-                    if (!formData.subject) {
-                        result.subject = 'Subject is required.';
-                    }
-                    
-                    if (!formData.message) {
-                        result.message = 'Message is required.';
-                    }
-                    
-                    if (!formData.consent) {
-                        result.consent = 'You must consent to proceed.';
-                    }
-                    
-                    return result;
-                });
-                
-                const isFormValid = computed(() => {
-                    return Object.keys(errors.value).length === 0;
-                });
-                
-                const formSubmitted = ref(false);
-                const formSuccess = ref(false);
-                const formMessage = ref('');
-                
-                const submitForm = () => {
-                    // Touch all required fields to show validation errors
-                    Object.keys(touched).forEach(field => {
-                        touched[field] = true;
-                    });
-                    
-                    if (isFormValid.value) {
-                        // Simulate form submission
-                        console.log("Form data submitted:", JSON.parse(JSON.stringify(formData)));
-                        formSubmitted.value = true;
-                        formSuccess.value = true;
-                        formMessage.value = 'Thank you for your message! We will get back to you shortly.';
-                        
-                        // Reset form after successful submission
-                        Object.keys(formData).forEach(key => {
-                            if (typeof formData[key] === 'boolean') {
-                                formData[key] = false;
-                            } else {
-                                formData[key] = '';
-                            }
-                        });
-                        
-                        Object.keys(touched).forEach(key => {
-                            touched[key] = false;
-                        });
-                        
-                        // Focus on the success message for screen readers
-                        setTimeout(() => {
-                            const statusElement = document.querySelector('[role="status"]');
-                            if (statusElement) {
-                                statusElement.focus();
-                            }
-                        }, 100);
-                        
-                        // Hide success message after 5 seconds
-                        setTimeout(() => {
-                            formSubmitted.value = false;
-                        }, 5000);
-                    } else {
-                        formSubmitted.value = true;
-                        formSuccess.value = false;
-                        formMessage.value = 'Please fill out all required fields correctly.';
-                        
-                        // Focus on the first error for screen readers
-                        setTimeout(() => {
-                            const firstErrorField = document.querySelector('.error-input');
-                            if (firstErrorField) {
-                                firstErrorField.focus();
-                            }
-                        }, 100);
-                        
-                        // Hide error message after 5 seconds
-                        setTimeout(() => {
-                            formSubmitted.value = false;
-                        }, 5000);
-                    }
-                };
-                
-                // Close mobile menu when clicking on a link
-                const closeMenuOnNavigation = () => {
-                    if (mobileMenuOpen.value) {
-                        mobileMenuOpen.value = false;
-                        document.body.classList.remove('menu-open');
-                    }
-                };
-                
-                // Add resize event listener to handle window resizing
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth > 768 && mobileMenuOpen.value) {
-                        mobileMenuOpen.value = false;
-                        document.body.classList.remove('menu-open');
-                    }
-                });
-                
-                // Handle keyboard navigation for accessibility
-                const handleKeyDown = (event) => {
-                    if (event.key === 'Escape' && mobileMenuOpen.value) {
-                        toggleMobileMenu();
-                    }
-                };
-                
-                window.addEventListener('keydown', handleKeyDown);
-                
-                return {
-                    currentYear,
-                    mobileMenuOpen,
-                    toggleMobileMenu,
-                    formData,
-                    errors,
-                    touched,
-                    touch,
-                    isFormValid,
-                    submitForm,
-                    formSubmitted,
-                    formSuccess,
-                    formMessage,
-                    closeMenuOnNavigation
-                };
-            }
-        }).mount('#app');
-        
-        // Update current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
-        // Add scroll event listener for header styling
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set current year in footer
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
         });
     </script>
-
-<script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
