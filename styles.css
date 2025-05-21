@@ -164,7 +164,7 @@ img {
   width: 100%;
   height: 100vh;
   background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)),
-    url("img/HomepageHeroOffice.jpg");
+    url("/img/HomepageHeroOffice.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
