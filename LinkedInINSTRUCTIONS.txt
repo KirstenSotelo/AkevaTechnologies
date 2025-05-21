@@ -1,0 +1,17 @@
+This is the Instructions page to have the LinkedIn buttons redirect
+to your (future) AkevaTechnologies LinkedIn page.
+
+In index.html, about.html, services.html, contact.html (All 4 files)
+You will each find a similar line:
+
+    <a href="#" class="social-icon" aria-label="LinkedIn - Connect with Akeva Technologies"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+
+The href="#" indicates that it DOES NOT redirect to another page.
+Simply change the # found inside the quotes to your LinkedIn link.
+
+Example:
+
+    <a href="https://www.linkedin.com/in/misse-misse/" class="social-icon" aria-label="LinkedIn - Connect with Akeva Technologies"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+
+Now, it will redirect to your LinkedIn for example.
+You must do this for all of the 4 files mentioned above.

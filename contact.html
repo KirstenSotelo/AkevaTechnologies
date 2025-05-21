@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="icon" href="img/Favicon.png">
     
     <!-- Schema.org JSON-LD structured data -->
@@ -112,7 +111,62 @@
         }
       ]
     }
-    </script>
+</script>
+    
+    <!-- Removed config.js reference -->
+    <style>
+.math-challenge-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#math-challenge {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.number-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.number-display {
+    width: 40px;
+    text-align: center;
+    font-size: 1.1em;
+    padding: 8px 0;
+    border: none;
+    background: #fff;
+}
+
+.number-btn {
+    background: #f0f0f0;
+    border: none;
+    width: 30px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.number-btn:hover {
+    background: #e0e0e0;
+}
+
+.number-btn:active {
+    background: #d0d0d0;
+}
+
+.number-btn:focus {
+    outline: 2px solid #0056b3;
+}
+</style>
 </head>
 <body>
     <div id="app">
@@ -124,10 +178,10 @@
                     <img src="img/AkevaTechnologiesLogo.png" alt="Akeva Technologies Logo - Cybersecurity and AI Governance Consulting" width="75" height="75">
                 </a>
                 <!-- Mobile menu toggle button -->
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="{{mobileMenuOpen ? 'true' : 'false'}}" aria-controls="primary-navigation" @click="toggleMobileMenu">
-                    <i class="fas" :class="{'fa-bars': !mobileMenuOpen, 'fa-times': mobileMenuOpen}" aria-hidden="true"></i>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars" id="menu-icon" aria-hidden="true"></i>
                 </button>
-                <nav :class="{'active': mobileMenuOpen}" aria-label="Primary navigation" id="primary-navigation">
+                <nav class="" aria-label="Primary navigation" id="primary-navigation">
                     <ul role="menubar">
                         <li role="none"><a href="index.html" role="menuitem">Home</a></li>
                         <li role="none"><a href="about.html" role="menuitem">About</a></li>
@@ -188,24 +242,32 @@
                     
                     <div class="contact-form">
                         <h2 id="form-heading">Send Us a <span class="highlight">Message</span></h2>
-                        <form @submit.prevent="submitForm" aria-labelledby="form-heading" novalidate>
+                        
+                        <!-- Updated form action to point to our PHP processor -->
+                        <form action="process-form.php" method="POST" id="contact-form" aria-labelledby="form-heading">
+                            
+                            <!-- Removed access key input - it's now in the PHP file -->
+                            
+                            <!-- Optional: Subject field for email -->
+                            <input type="hidden" name="subject" value="New Contact Form Submission - Akeva Technologies">
+                            
+                            <!-- Optional: From Name field for email -->
+                            <input type="hidden" name="from_name" value="Akeva Technologies Website">
+                            
+                            <!-- Removed redirect URL - handled in PHP -->
+                            
                             <div class="form-grid">
                                 <div class="input-group">
                                     <label for="name" id="name-label">Full Name</label>
                                     <input 
                                         type="text" 
                                         id="name" 
-                                        v-model="formData.name" 
-                                        :class="{ 'error-input': errors.name && touched.name }"
-                                        @blur="touch('name')"
+                                        name="name" 
+                                        class="form-input"
                                         aria-required="true"
-                                        aria-invalid="{{errors.name && touched.name ? 'true' : 'false'}}"
-                                        aria-describedby="{{errors.name && touched.name ? 'name-error' : ''}}"
                                         required
                                     >
-                                    <div class="error-message" v-if="errors.name && touched.name" id="name-error" role="alert">
-                                        {{ errors.name }}
-                                    </div>
+                                    <div class="error-message" id="name-error" role="alert"></div>
                                 </div>
                                 
                                 <div class="input-group">
@@ -213,17 +275,12 @@
                                     <input 
                                         type="email" 
                                         id="email" 
-                                        v-model="formData.email" 
-                                        :class="{ 'error-input': errors.email && touched.email }"
-                                        @blur="touch('email')"
+                                        name="email" 
+                                        class="form-input"
                                         aria-required="true"
-                                        aria-invalid="{{errors.email && touched.email ? 'true' : 'false'}}"
-                                        aria-describedby="{{errors.email && touched.email ? 'email-error' : ''}}"
                                         required
                                     >
-                                    <div class="error-message" v-if="errors.email && touched.email" id="email-error" role="alert">
-                                        {{ errors.email }}
-                                    </div>
+                                    <div class="error-message" id="email-error" role="alert"></div>
                                 </div>
                                 
                                 <div class="input-group">
@@ -231,7 +288,8 @@
                                     <input 
                                         type="tel" 
                                         id="phone" 
-                                        v-model="formData.phone"
+                                        name="phone"
+                                        class="form-input"
                                         aria-required="false"
                                     >
                                 </div>
@@ -241,7 +299,8 @@
                                     <input 
                                         type="text" 
                                         id="company" 
-                                        v-model="formData.company"
+                                        name="company"
+                                        class="form-input"
                                         aria-required="false"
                                     >
                                 </div>
@@ -252,65 +311,55 @@
                                 <input 
                                     type="text" 
                                     id="subject" 
-                                    v-model="formData.subject" 
-                                    :class="{ 'error-input': errors.subject && touched.subject }"
-                                    @blur="touch('subject')"
+                                    name="subject" 
+                                    class="form-input"
                                     aria-required="true"
-                                    aria-invalid="{{errors.subject && touched.subject ? 'true' : 'false'}}"
-                                    aria-describedby="{{errors.subject && touched.subject ? 'subject-error' : ''}}"
                                     required
                                 >
-                                <div class="error-message" v-if="errors.subject && touched.subject" id="subject-error" role="alert">
-                                    {{ errors.subject }}
-                                </div>
+                                <div class="error-message" id="subject-error" role="alert"></div>
                             </div>
                             
                             <div class="input-group full-width">
                                 <label for="message" id="message-label">Message</label>
                                 <textarea 
                                     id="message" 
+                                    name="message" 
                                     rows="5" 
-                                    v-model="formData.message" 
-                                    :class="{ 'error-input': errors.message && touched.message }"
-                                    @blur="touch('message')"
+                                    class="form-input"
                                     aria-required="true"
-                                    aria-invalid="{{errors.message && touched.message ? 'true' : 'false'}}"
-                                    aria-describedby="{{errors.message && touched.message ? 'message-error' : ''}}"
                                     required
                                 ></textarea>
-                                <div class="error-message" v-if="errors.message && touched.message" id="message-error" role="alert">
-                                    {{ errors.message }}
-                                </div>
+                                <div class="error-message" id="message-error" role="alert"></div>
                             </div>
+                            
+                            <input type="checkbox" name="botcheck" id="botcheck" class="hidden" style="display: none;">
+                            <input type="hidden" name="timestamp" id="form-timestamp" value="">
+                            <input type="hidden" name="math_answer" id="math-answer-hidden" value="0">
                             
                             <div class="input-group checkbox-group full-width">
                                 <label class="checkbox-label" for="consent" id="consent-label">
                                     <input 
                                         type="checkbox" 
                                         id="consent"
-                                        v-model="formData.consent" 
-                                        :class="{ 'error-input': errors.consent && touched.consent }"
-                                        @blur="touch('consent')"
+                                        name="consent" 
+                                        value="yes"
                                         aria-required="true"
-                                        aria-invalid="{{errors.consent && touched.consent ? 'true' : 'false'}}"
-                                        aria-describedby="{{errors.consent && touched.consent ? 'consent-error' : ''}}"
                                         required
                                     >
                                     <span>I consent to Akeva Technologies collecting and storing my data for the purpose of responding to my inquiry.</span>
                                 </label>
-                                <div class="error-message consent-error" v-if="errors.consent && touched.consent" id="consent-error" role="alert">
-                                    {{ errors.consent }}
-                                </div>
+                                <div class="error-message consent-error" id="consent-error" role="alert"></div>
                             </div>
                             
+                            <!-- Honeypot field to prevent spam -->
+                            
+                            
                             <div class="form-footer">
-                                <button type="submit" class="btn"  :class="{ 'btn-disabled': !isFormValid }" :aria-disabled="!isFormValid ? 'true' : 'false'" aria-label="Send message about cybersecurity or AI governance services" @click="isFormValid ? submitForm() : showFormErrors()">Send Message</button>
+                                <button type="submit" class="btn" id="submit-button" aria-label="Send message about cybersecurity or AI governance services">
+                                    Send Message
+                                </button>
                                 
-                                <div class="form-message" v-if="formSubmitted" role="status" aria-live="polite">
-                                    <p :class="{ 'success': formSuccess, 'error': !formSuccess }">
-                                        {{ formMessage }}
-                                    </p>
-                                </div>
+                                <div class="form-message" id="form-message" role="status" aria-live="polite"></div>
                             </div>
                         </form>
                     </div>
@@ -391,179 +440,39 @@
     </div>
 
     <script>
-        const { createApp, ref, computed, reactive } = Vue;
-        
-        createApp({
-            setup() {
-                const currentYear = ref(new Date().getFullYear());
-                const mobileMenuOpen = ref(false);
-                
-                const toggleMobileMenu = () => {
-                    mobileMenuOpen.value = !mobileMenuOpen.value;
-                    document.body.classList.toggle('menu-open', mobileMenuOpen.value);
-                };
-                
-                const formData = reactive({
-                    name: '',
-                    email: '',
-                    phone: '',
-                    company: '',
-                    subject: '',
-                    message: '',
-                    consent: false
-                });
-                
-                const touched = reactive({
-                    name: false,
-                    email: false,
-                    subject: false,
-                    message: false,
-                    consent: false
-                });
-                
-                const touch = (field) => {
-                    touched[field] = true;
-                };
-                
-                const errors = computed(() => {
-                    const result = {};
-                    
-                    if (!formData.name) {
-                        result.name = 'Name is required.';
-                    }
-                    
-                    if (!formData.email) {
-                        result.email = 'Email is required.';
-                    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-                        result.email = 'Please enter a valid email address.';
-                    }
-                    
-                    if (!formData.subject) {
-                        result.subject = 'Subject is required.';
-                    }
-                    
-                    if (!formData.message) {
-                        result.message = 'Message is required.';
-                    }
-                    
-                    if (!formData.consent) {
-                        result.consent = 'You must consent to proceed.';
-                    }
-                    
-                    return result;
-                });
-                
-                const isFormValid = computed(() => {
-                    return Object.keys(errors.value).length === 0;
-                });
-                
-                const formSubmitted = ref(false);
-                const formSuccess = ref(false);
-                const formMessage = ref('');
-                
-                const submitForm = () => {
-                    // Touch all required fields to show validation errors
-                    Object.keys(touched).forEach(field => {
-                        touched[field] = true;
-                    });
-                    
-                    if (isFormValid.value) {
-                        // Simulate form submission
-                        console.log("Form data submitted:", JSON.parse(JSON.stringify(formData)));
-                        formSubmitted.value = true;
-                        formSuccess.value = true;
-                        formMessage.value = 'Thank you for your message! We will get back to you shortly.';
-                        
-                        // Reset form after successful submission
-                        Object.keys(formData).forEach(key => {
-                            if (typeof formData[key] === 'boolean') {
-                                formData[key] = false;
-                            } else {
-                                formData[key] = '';
-                            }
-                        });
-                        
-                        Object.keys(touched).forEach(key => {
-                            touched[key] = false;
-                        });
-                        
-                        // Focus on the success message for screen readers
-                        setTimeout(() => {
-                            const statusElement = document.querySelector('[role="status"]');
-                            if (statusElement) {
-                                statusElement.focus();
-                            }
-                        }, 100);
-                        
-                        // Hide success message after 5 seconds
-                        setTimeout(() => {
-                            formSubmitted.value = false;
-                        }, 5000);
-                    } else {
-                        formSubmitted.value = true;
-                        formSuccess.value = false;
-                        formMessage.value = 'Please fill out all required fields correctly.';
-                        
-                        // Focus on the first error for screen readers
-                        setTimeout(() => {
-                            const firstErrorField = document.querySelector('.error-input');
-                            if (firstErrorField) {
-                                firstErrorField.focus();
-                            }
-                        }, 100);
-                        
-                        // Hide error message after 5 seconds
-                        setTimeout(() => {
-                            formSubmitted.value = false;
-                        }, 5000);
-                    }
-                };
-                
-                // Close mobile menu when clicking on a link
-                const closeMenuOnNavigation = () => {
-                    if (mobileMenuOpen.value) {
-                        mobileMenuOpen.value = false;
-                        document.body.classList.remove('menu-open');
-                    }
-                };
-                
-                // Add resize event listener to handle window resizing
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth > 768 && mobileMenuOpen.value) {
-                        mobileMenuOpen.value = false;
-                        document.body.classList.remove('menu-open');
-                    }
-                });
-                
-                // Handle keyboard navigation for accessibility
-                const handleKeyDown = (event) => {
-                    if (event.key === 'Escape' && mobileMenuOpen.value) {
-                        toggleMobileMenu();
-                    }
-                };
-                
-                window.addEventListener('keydown', handleKeyDown);
-                
-                return {
-                    currentYear,
-                    mobileMenuOpen,
-                    toggleMobileMenu,
-                    formData,
-                    errors,
-                    touched,
-                    touch,
-                    isFormValid,
-                    submitForm,
-                    formSubmitted,
-                    formSuccess,
-                    formMessage,
-                    closeMenuOnNavigation
-                };
-            }
-        }).mount('#app');
-        
         // Update current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const nav = document.getElementById('primary-navigation');
+            const menuIcon = document.getElementById('menu-icon');
+            const menuButton = document.querySelector('.mobile-menu-toggle');
+            
+            nav.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+            
+            const isOpen = nav.classList.contains('active');
+            menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            
+            if (isOpen) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#primary-navigation a').forEach(link => {
+            link.addEventListener('click', function() {
+                const nav = document.getElementById('primary-navigation');
+                if (nav.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
         
         // Add scroll event listener for header styling
         window.addEventListener('scroll', function() {
@@ -574,25 +483,286 @@
                 header.classList.remove('scrolled');
             }
         });
-
-        const showFormErrors = () => {
-            // Touch all fields to show validation errors
-            Object.keys(touched).forEach(field => {
-                touched[field] = true;
-            });
+        
+        // Updated form handling code
+        document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    
+    // Set timestamp when page loads
+    document.getElementById('form-timestamp').value = Date.now();
+    
+    // Add a simple math challenge for humans
+    const mathChallengeContainer = document.createElement('div');
+    mathChallengeContainer.className = 'input-group full-width';
+    mathChallengeContainer.innerHTML = `
+        <label for="math-display" id="math-challenge-label">Please solve this simple math problem:</label>
+        <div class="math-challenge-container">
+            <span id="math-challenge"></span>
+            <div class="number-control">
+                <button type="button" class="number-btn" id="decrease-btn" aria-label="Decrease value">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                </button>
+                <span id="math-display" class="number-display" aria-live="polite" tabindex="0">0</span>
+                <button type="button" class="number-btn" id="increase-btn" aria-label="Increase value">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div class="error-message" id="math-error" role="alert"></div>
+    `;
+    
+    // Insert the math challenge before the consent checkbox
+    const consentGroup = document.querySelector('.checkbox-group');
+    form.insertBefore(mathChallengeContainer, consentGroup);
+    
+    // Generate random math problem
+    function generateMathProblem() {
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        const mathChallenge = document.getElementById('math-challenge');
+        mathChallenge.textContent = `${num1} + ${num2} = `;
+        // Store expected answer in a data attribute
+        mathChallenge.dataset.answer = (num1 + num2).toString();
+        // Reset the display to 0
+        document.getElementById('math-display').textContent = '0';
+        document.getElementById('math-answer-hidden').value = '0';
+    }
+    
+    // Generate initial math problem
+    generateMathProblem();
+    
+    // Add event listeners for the increase/decrease buttons
+    document.getElementById('increase-btn').addEventListener('click', function() {
+        const display = document.getElementById('math-display');
+        const hiddenInput = document.getElementById('math-answer-hidden');
+        let value = parseInt(display.textContent);
+        if (value < 30) { // Set a reasonable upper limit
+            value++;
+            display.textContent = value;
+            hiddenInput.value = value;
+        }
+    });
+    
+    document.getElementById('decrease-btn').addEventListener('click', function() {
+        const display = document.getElementById('math-display');
+        const hiddenInput = document.getElementById('math-answer-hidden');
+        let value = parseInt(display.textContent);
+        if (value > 0) { // Don't allow negative numbers
+            value--;
+            display.textContent = value;
+            hiddenInput.value = value;
+        }
+    });
+    
+    // Allow keyboard navigation for accessibility
+    document.getElementById('math-display').addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowUp' || e.key === '+') {
+            document.getElementById('increase-btn').click();
+            e.preventDefault();
+        } else if (e.key === 'ArrowDown' || e.key === '-') {
+            document.getElementById('decrease-btn').click();
+            e.preventDefault();
+        }
+    });
+    
+    // Form validation
+    form.addEventListener('submit', function(e) {
+        let valid = true;
+        
+        // Clear previous error messages
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.textContent = '';
+        });
+        document.querySelectorAll('.form-input').forEach(el => {
+            el.classList.remove('error-input');
+        });
+        
+        // Validate name
+        const nameInput = document.getElementById('name');
+        if (!nameInput.value.trim()) {
+            document.getElementById('name-error').textContent = 'Name is required.';
+            nameInput.classList.add('error-input');
+            valid = false;
+        }
+        
+        // Validate email
+        const emailInput = document.getElementById('email');
+        if (!emailInput.value.trim()) {
+            document.getElementById('email-error').textContent = 'Email is required.';
+            emailInput.classList.add('error-input');
+            valid = false;
+        } else if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
+            document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+            emailInput.classList.add('error-input');
+            valid = false;
+        }
+        
+        // Validate subject
+        const subjectInput = document.getElementById('subject');
+        if (!subjectInput.value.trim()) {
+            document.getElementById('subject-error').textContent = 'Subject is required.';
+            subjectInput.classList.add('error-input');
+            valid = false;
+        }
+        
+        // Validate message
+        const messageInput = document.getElementById('message');
+        if (!messageInput.value.trim()) {
+            document.getElementById('message-error').textContent = 'Message is required.';
+            messageInput.classList.add('error-input');
+            valid = false;
+        }
+        
+        // Validate math challenge
+        const mathDisplay = document.getElementById('math-display');
+        const expectedAnswer = document.getElementById('math-challenge').dataset.answer;
+        if (mathDisplay.textContent !== expectedAnswer) {
+            document.getElementById('math-error').textContent = 'Incorrect answer. Please try again.';
+            document.getElementById('math-display').classList.add('error-input');
+            valid = false;
+            // Generate a new math problem
+            generateMathProblem();
+        }
+        
+        // Validate consent
+        const consentInput = document.getElementById('consent');
+        if (!consentInput.checked) {
+            document.getElementById('consent-error').textContent = 'You must consent to proceed.';
+            valid = false;
+        }
+        
+        // Check if form was filled too quickly (likely a bot)
+        const timestamp = parseInt(document.getElementById('form-timestamp').value);
+        const currentTime = Date.now();
+        const timeElapsed = (currentTime - timestamp) / 1000; // in seconds
+        
+        if (timeElapsed < 3) { // If form was filled in less than 3 seconds
+            const formMessage = document.getElementById('form-message');
+            formMessage.textContent = 'Form submitted too quickly. Please try again.';
+            formMessage.className = 'form-message error';
+            valid = false;
+            // Reset timestamp
+            document.getElementById('form-timestamp').value = Date.now();
+        }
+        
+        if (!valid) {
+            e.preventDefault();
             
-            // Show a message about fixing errors
-            formSubmitted.value = true;
-            formSuccess.value = false;
-            formMessage.value = 'Please fill out all required fields correctly.';
+            // Show form error message
+            const formMessage = document.getElementById('form-message');
+            if (!formMessage.textContent) {
+                formMessage.textContent = 'Please fill out all required fields correctly.';
+            }
+            formMessage.className = 'form-message error';
+            
+            // Focus on the first error field
+            const firstErrorField = document.querySelector('.error-input');
+            if (firstErrorField) {
+                firstErrorField.focus();
+            }
             
             // Hide error message after 5 seconds
             setTimeout(() => {
-                formSubmitted.value = false;
+                formMessage.textContent = '';
+                formMessage.className = 'form-message';
             }, 5000);
-            };
+            return;
+        }
+        
+        // If valid, submit via AJAX to prevent page reload
+        e.preventDefault();
+        
+        // Show loading state
+        const submitButton = document.getElementById('submit-button');
+        const formMessage = document.getElementById('form-message');
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+        
+        // Send form data via fetch API
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form)
+        })
+        .then(response => {
+            // Check if response is OK first
+            if (response.ok) {
+                // Success - don't even try to parse the response
+                return {
+                    status: 200,
+                    data: {
+                        success: true,
+                        message: 'Thank you for your message! We will get back to you shortly.'
+                    }
+                };
+            }
+            
+            // For error responses, try to parse JSON but have a fallback
+            return response.json()
+                .catch(() => {
+                    return {
+                        success: false,
+                        message: 'There was an error processing your request.'
+                    };
+                })
+                .then(data => {
+                    return { status: response.status, data };
+                });
+        })
+        .then(result => {
+            const { status, data } = result;
+            
+            // Always show success message if we got here with status 200
+            if (status === 200) {
+                formMessage.textContent = 'Thank you for your message! We will get back to you shortly.';
+                formMessage.className = 'form-message success';
+                form.reset();
+                // Generate new math problem after successful submission
+                generateMathProblem();
+                // Reset timestamp
+                document.getElementById('form-timestamp').value = Date.now();
+            } else if (status === 429) {
+                // Rate limit exceeded
+                formMessage.textContent = 'You have submitted too many messages recently. Please try again later.';
+                formMessage.className = 'form-message error';
+            } else {
+                // Error message
+                const errorMsg = data && data.message ? data.message : 'There was an error sending your message. Please try again.';
+                formMessage.textContent = errorMsg;
+                formMessage.className = 'form-message error';
+            }
+        })
+        .catch(error => {
+            // This will only happen for network errors
+            console.error('Network Error:', error);
+            formMessage.textContent = 'There was an error sending your message. Please try again.';
+            formMessage.className = 'form-message error';
+        })
+        .finally(() => {
+            // Reset button state
+            submitButton.textContent = 'Send Message';
+            submitButton.disabled = false;
+        });
+    });
+    
+    // Handle form success/error (for when redirect is not used)
+    const urlParams = new URLSearchParams(window.location.search);
+    const status = urlParams.get('status');
+    
+    if (status === 'success') {
+        const formMessage = document.getElementById('form-message');
+        formMessage.textContent = 'Thank you for your message! We will get back to you shortly.';
+        formMessage.className = 'form-message success';
+        
+        // Reset form
+        form.reset();
+        // Generate new math problem
+        generateMathProblem();
+    } else if (status === 'error') {
+        const formMessage = document.getElementById('form-message');
+        formMessage.textContent = 'There was an error sending your message. Please try again.';
+        formMessage.className = 'form-message error';
+    }
+});
     </script>
-
-<script src="script.js" defer></script>
 </body>
 </html>
