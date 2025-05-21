@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Akeva Technologies</title>
+    <!-- Added meta description -->
+    <meta name="description" content="Contact Akeva Technologies for expert cybersecurity and AI governance consulting. Reach our team by phone, email, or visit our Ottawa office to discuss your security and compliance needs.">
+    <!-- Added canonical tag -->
+    <link rel="canonical" href="https://www.akeva-technologies.com/contact.html">
+    <!-- Added Open Graph tags for social media sharing -->
+    <meta property="og:title" content="Contact Us | Akeva Technologies">
+    <meta property="og:description" content="Contact Akeva Technologies for expert cybersecurity and AI governance consulting. Reach our team to discuss your security and compliance needs.">
+    <meta property="og:image" content="https://www.akeva-technologies.com/img/AkevaTechnologiesLogo.png">
+    <meta property="og:url" content="https://www.akeva-technologies.com/contact.html">
+    <meta property="og:type" content="website">
+    <!-- Added keywords meta tag -->
+    <meta name="keywords" content="contact Akeva Technologies, cybersecurity consulting, AI governance experts, Ottawa security consultants, ISO 27001 consultants, ISO 42001 consultants, information security services">
+    <!-- Added author meta tag -->
+    <meta name="author" content="Akeva Technologies">
+    <!-- Added color scheme meta tag -->
+    <meta name="theme-color" content="#0056b3">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -75,6 +91,28 @@
       ]
     }
     </script>
+    
+    <!-- Added BreadcrumbList structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.akeva-technologies.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://www.akeva-technologies.com/contact.html"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div id="app">
@@ -83,7 +121,7 @@
         <header role="banner">
             <div class="container">
                 <a href="index.html" class="logo" aria-label="AKEVA TECHNOLOGIES homepage">
-                    <img src="img/AkevaTechnologiesLogo.png" alt="AKEVA TECHNOLOGIES Logo" width="75" height="75">
+                    <img src="img/AkevaTechnologiesLogo.png" alt="Akeva Technologies Logo - Cybersecurity and AI Governance Consulting" width="75" height="75">
                 </a>
                 <!-- Mobile menu toggle button -->
                 <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="{{mobileMenuOpen ? 'true' : 'false'}}" aria-controls="primary-navigation" @click="toggleMobileMenu">
@@ -100,7 +138,7 @@
             </div>
         </header>
 
-        <main id="main-content">
+        <main id="main-content">            
             <section class="page-header" aria-labelledby="page-title">
                 <div class="container">
                     <h1 id="page-title">Contact Us</h1>
@@ -111,7 +149,7 @@
                 <div class="container contact-container">
                     <div class="contact-info">
                         <h2 id="contact-heading"><span class="highlight">Connect</span> With Us</h2>
-                        <p>We're here to answer any questions you may have about our services. Reach out to us and we'll respond as soon as we can.</p>
+                        <p>We're here to answer any questions you may have about our cybersecurity and AI governance services. Reach out to us and we'll respond as soon as we can.</p>
                         
                         <div class="contact-details">
                             <div class="contact-info-item">
@@ -140,7 +178,10 @@
                         </div>
                         
                         <div class="social-icons" aria-label="Social media links">
-                            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>    
+                            <a href="#" class="social-icon" aria-label="LinkedIn - Connect with Akeva Technologies"><i class="fab fa-linkedin" aria-hidden="true"></i></a>    
+                            <!-- To add LinkedIn URL, replace the # with the URL of your LinkedIn page-->
+                            <!-- Example: -->
+                            <!-- a href="https://www.linkedin.com/in/misse-misse/" -->
                         </div>
                         <div class="contact-decoration" aria-hidden="true"></div>
                     </div>
@@ -263,7 +304,7 @@
                             </div>
                             
                             <div class="form-footer">
-                                <button type="submit" class="btn"  :class="{ 'btn-disabled': !isFormValid }" :aria-disabled="!isFormValid ? 'true' : 'false'" aria-label="Send message" @click="isFormValid ? submitForm() : showFormErrors()">Send Message</button>
+                                <button type="submit" class="btn"  :class="{ 'btn-disabled': !isFormValid }" :aria-disabled="!isFormValid ? 'true' : 'false'" aria-label="Send message about cybersecurity or AI governance services" @click="isFormValid ? submitForm() : showFormErrors()">Send Message</button>
                                 
                                 <div class="form-message" v-if="formSubmitted" role="status" aria-live="polite">
                                     <p :class="{ 'success': formSuccess, 'error': !formSuccess }">
@@ -280,7 +321,7 @@
                 <div class="container">
                     <h2 class="section-title" id="map-heading">Visit Our <span class="highlight">Office</span></h2>
                     <div class="map-container">
-                        <!-- Google Maps iframe -->
+                        <!-- Google Maps iframe with improved accessibility -->
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.2839757750074!2d-75.65650462346277!3d45.43376573621425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0517e1e94e7d%3A0x4b5b7d43fd6bb0d0!2s435%20St%20Laurent%20Blvd%20%23202%2C%20Ottawa%2C%20ON%20K1K%202Z8%2C%20Canada!5e0!3m2!1sen!2sus!4v1715090400000!5m2!1sen!2sus" 
                             width="100%" 

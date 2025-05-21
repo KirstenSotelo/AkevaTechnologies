@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services | Akeva Technologies</title>
+    <!-- Added meta description -->
+    <meta name="description" content="Explore Akeva Technologies' comprehensive cybersecurity and AI governance services including ISO 27001 implementation, ISO 42001 compliance, and management systems integration.">
+    <!-- Added canonical tag -->
+    <link rel="canonical" href="https://www.akeva-technologies.com/services.html">
+    <!-- Added Open Graph tags for social media sharing -->
+    <meta property="og:title" content="Services | Akeva Technologies">
+    <meta property="og:description" content="Explore Akeva Technologies' comprehensive cybersecurity and AI governance services including ISO 27001 implementation, ISO 42001 compliance, and management systems integration.">
+    <meta property="og:image" content="https://www.akeva-technologies.com/img/ServicesCybersecurityServices.png">
+    <meta property="og:url" content="https://www.akeva-technologies.com/services.html">
+    <meta property="og:type" content="website">
+    <!-- Added keywords meta tag -->
+    <meta name="keywords" content="ISO 27001, ISO 42001, cybersecurity services, AI governance, information security, risk assessment, management systems integration, ISMS implementation, AI ethics framework">
+    <!-- Added author meta tag -->
+    <meta name="author" content="Akeva Technologies">
+    <!-- Added color scheme meta tag -->
+    <meta name="theme-color" content="#0056b3">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="services.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
@@ -79,12 +95,34 @@
       ]
     }
     </script>
+    
+    <!-- Added BreadcrumbList structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.akeva-technologies.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.akeva-technologies.com/services.html"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <header role="banner">
         <div class="container">
             <a href="index.html" class="logo" aria-label="AKEVA TECHNOLOGIES homepage">
-                <img src="img/AkevaTechnologiesLogo.png" alt="AKEVA TECHNOLOGIES Logo" width="75" height="75">
+                <img src="img/AkevaTechnologiesLogo.png" alt="Akeva Technologies Logo - Cybersecurity and AI Governance Consulting" width="75" height="75">
             </a>
             <!-- Mobile menu toggle button -->
             <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
@@ -114,7 +152,7 @@
             </div>
         </section>
 
-        <section class="service-category" aria-labelledby="cybersecurity-heading">
+        <section class="service-category" id="cybersecurity" aria-labelledby="cybersecurity-heading">
             <div class="container">
                 <div class="service-content">
                     <div class="service-header">
@@ -149,13 +187,13 @@
                     </div>
                 </div>
                 <div class="service-image" aria-hidden="true">
-                    <img src="img/ServicesCybersecurityServices.png" alt="Visual representation of ISO 27001 Cybersecurity Services">
+                    <img src="img/ServicesCybersecurityServices.png" alt="ISO 27001 Cybersecurity Services - Information security management system implementation and certification" width="600" height="400">
                     <div class="service-tech-frame"></div>
                 </div>
             </div>
         </section>
 
-        <section class="service-category" aria-labelledby="ai-governance-heading">
+        <section class="service-category" id="ai-governance" aria-labelledby="ai-governance-heading">
             <div class="container">
                 <div class="service-content">
                     <div class="service-header">
@@ -190,13 +228,13 @@
                     </div>
                 </div>
                 <div class="service-image" aria-hidden="true">
-                    <img src="img/ServicesAIGovernance.png" alt="Visual representation of AI Governance Services">
+                    <img src="img/ServicesAIGovernance.png" alt="ISO 42001 AI Governance Services - Artificial intelligence management system implementation and ethics framework" width="600" height="400">
                     <div class="service-tech-frame"></div>
                 </div>
             </div>
         </section>
 
-        <section class="service-category" aria-labelledby="management-systems-heading">
+        <section class="service-category" id="management-systems" aria-labelledby="management-systems-heading">
             <div class="container">
                 <div class="service-content">
                     <div class="service-header">
@@ -223,7 +261,7 @@
                     </div>
                 </div>
                 <div class="service-image" aria-hidden="true">
-                    <img src="img/ServicesManagementSystems.png" alt="Visual representation of Management Systems Integration">
+                    <img src="img/ServicesManagementSystems.png" alt="Management Systems Integration - Unified approach to cybersecurity and AI governance compliance" width="600" height="400">
                     <div class="service-tech-frame"></div>
                 </div>
             </div>
@@ -233,7 +271,7 @@
             <div class="container">
                 <h2 id="cta-heading">Ready to Enhance Your Security and Governance?</h2>
                 <p>Contact us today to learn how we can help your organization.</p>
-                <a href="contact.html" class="btn" aria-label="Get in touch with our team">Get in Touch</a>
+                <a href="contact.html" class="btn" aria-label="Get in touch with our cybersecurity and AI governance experts">Get in Touch</a>
             </div>
         </section>
     </main>

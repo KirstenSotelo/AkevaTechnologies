@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Akeva Technologies</title>
+    <!-- Added meta description -->
+    <meta name="description" content="Learn about Akeva Technologies, our story, mission, and core values in cybersecurity and AI governance consulting. Founded by experts to help organizations navigate digital security challenges.">
+    <!-- Added canonical tag -->
+    <link rel="canonical" href="https://www.akeva-technologies.com/about.html">
+    <!-- Added Open Graph tags for social media sharing -->
+    <meta property="og:title" content="About Us | Akeva Technologies">
+    <meta property="og:description" content="Learn about Akeva Technologies, our story, mission, and core values in cybersecurity and AI governance consulting. Founded by experts to help organizations navigate digital security challenges.">
+    <meta property="og:image" content="https://www.akeva-technologies.com/img/AboutOurStory.png">
+    <meta property="og:url" content="https://www.akeva-technologies.com/about.html">
+    <meta property="og:type" content="website">
+    <!-- Added keywords meta tag -->
+    <meta name="keywords" content="Akeva Technologies, cybersecurity experts, AI governance, company mission, core values, information security, risk management, artificial intelligence">
+    <!-- Added author meta tag -->
+    <meta name="author" content="Akeva Technologies">
+    <!-- Added color scheme meta tag -->
+    <meta name="theme-color" content="#0056b3">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -47,13 +63,35 @@
       }
     }
     </script>
+    
+    <!-- Added BreadcrumbList structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.akeva-technologies.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About",
+          "item": "https://www.akeva-technologies.com/about.html"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div id="app">
         <header role="banner">
             <div class="container">
                 <a href="index.html" class="logo" aria-label="AKEVA TECHNOLOGIES homepage">
-                    <img src="img/AkevaTechnologiesLogo.png" alt="AKEVA TECHNOLOGIES Logo" width="75" height="75">
+                    <img src="img/AkevaTechnologiesLogo.png" alt="Akeva Technologies Logo - Cybersecurity and AI Governance Consulting" width="75" height="75">
                 </a>
                 <!-- Mobile menu toggle button -->
                 <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
@@ -85,7 +123,7 @@
                         <p>With years of combined experience in information security, risk management, and artificial intelligence, our team has developed a comprehensive approach to helping organizations navigate the increasingly complex landscape of digital security and AI governance.</p>
                     </div>
                     <div class="about-image" aria-hidden="true">
-                        <img src="img/AboutOurStory.png" alt="Akeva Technologies team members collaborating" width="600" height="400">
+                        <img src="img/AboutOurStory.png" alt="Akeva Technologies team members collaborating on cybersecurity and AI governance solutions" width="600" height="400">
                         <div class="tech-frame"></div>
                     </div>
                 </div>
@@ -94,7 +132,7 @@
             <section class="mission-section" aria-labelledby="mission-heading">
                 <div class="container">
                     <div class="mission-image" aria-hidden="true">
-                        <img src="img/AboutOurMission.jpg" alt="Visual representation of our mission" width="600" height="400">
+                        <img src="img/AboutOurMission.jpg" alt="Visual representation of Akeva Technologies mission in cybersecurity and AI governance" width="600" height="400">
                         <div class="mission-tech-frame"></div>
                     </div>
                     <div class="mission-content">
@@ -137,7 +175,7 @@
                 <div class="container">
                     <h2 id="cta-heading">Ready to Enhance Your Security and Governance?</h2>
                     <p>Contact us today to learn how we can help your organization.</p>
-                    <a href="contact.html" class="btn" aria-label="Get in touch with our team">Get in Touch</a>
+                    <a href="contact.html" class="btn" aria-label="Get in touch with our cybersecurity and AI governance experts">Get in Touch</a>
                 </div>
             </section>
 
